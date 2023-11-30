@@ -12,8 +12,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // User Auth Session expiration
         $schedule->command('sanctum:prune-expired --hours=24')->daily();
+        
+        // NewsApi.org API
+        $schedule->command('news-api:cron')->everyFifteenMinutes();
+        // New York Times News API
+        $schedule->command('nyt-news:cron')->everyFifteenMinutes();
+        // The Guardian News API
+        $schedule->command('tg-news:cron')->everyFifteenMinutes();
     }
 
     /**
