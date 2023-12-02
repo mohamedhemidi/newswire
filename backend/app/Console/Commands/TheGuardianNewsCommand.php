@@ -35,30 +35,30 @@ class TheGuardianNewsCommand extends Command
         */
 
         $latestRecord = ScheduleLog::where('scheduled_task_name', '=', $this->signature)->latest('executed_at')->first();
-        
+
 
         /*
         // Populating news table with ALL recent news logic
         */
 
-        
+
         $url = "https://content.guardianapis.com/search?format=json&show-fields=bodyText,thumbnail&page-size=10&api-key=" . env('THE_GUARDIAN_API_KEY');
 
-        $news = Http::timeout(30)->retry(3,100)->get($url);
+        $news = Http::timeout(30)->retry(3, 100)->get($url);
 
 
         $data = $news->json();
-        
+
         foreach ($data['response']['results'] as $item) {
             $newsTime = new DateTime($item['webPublicationDate']);
 
-            if(isset($latestRecord->executed_at) && $newsTime->format('Y-m-d H:i:s') > $latestRecord->executed_at) {
+            if (isset($latestRecord->executed_at) && $newsTime->format('Y-m-d H:i:s') > $latestRecord->executed_at) {
                 News::create([
                     'source' => 'the-guardian',
                     'title' => $item['webTitle'],
                     'article' => $item['fields']['bodyText'],
                     'category' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['pillarName']))),
-                    'image_url' => isset($item['fields']['thumbnail']) ? $item['fields']['thumbnail']: null,
+                    'image_url' => isset($item['fields']['thumbnail']) ? $item['fields']['thumbnail'] : null,
                     'article_url' => $item['webUrl'],
                     'date_published' => $newsTime,
                 ]);

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string("title")->nullable();
             $table->mediumText("article")->nullable();
             $table->string("category")->nullable();
-            $table->string("image_url")->nullable();
-            $table->string("article_url")->nullable();
+            $table->text("image_url")->nullable();
+            $table->text("article_url")->nullable();
             $table->dateTime("date_published")->nullable();
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        //Schema::dropIfExists('news');
     }
 };

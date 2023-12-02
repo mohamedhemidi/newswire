@@ -34,34 +34,34 @@ class NYTNewsCommand extends Command
         */
 
         $latestRecord = ScheduleLog::where('scheduled_task_name', '=', $this->signature)->latest('executed_at')->first();
-        
+
 
         /*
         // Populating news table with ALL recent news logic
         */
 
-        $url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=&api-key=".env('NY_TIMES_API_KEY');
+        $url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=&api-key=" . env('NY_TIMES_API_KEY');
 
-        $news = Http::timeout(30)->retry(3,100)->get($url);
+        $news = Http::timeout(30)->retry(3, 100)->get($url);
 
         $data = $news->json();
 
         foreach ($data['response']['docs'] as $item) {
             $newsTime = new DateTime($item['pub_date']);
 
-            if(isset($latestRecord->executed_at) && $newsTime->format('Y-m-d H:i:s') > $latestRecord->executed_at) {
+            if (isset($latestRecord->executed_at) && $newsTime->format('Y-m-d H:i:s') > $latestRecord->executed_at) {
                 News::create([
                     'source' => 'new-york-times',
-                    'title' => $item['headline']['main'],
-                    'article' => $item['lead_paragraph'],
-                    'category' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['section_name']))),
-                    'image_url' => isset($item['multimedia'][0]) ? 'https://www.nytimes.com/'.$item['multimedia'][0]['url'] : null,
-                    'article_url' => $item['web_url'],
+                    'title' => isset($item['headline']['main']) ? $item['headline']['main'] : null,
+                    'article' => isset($item['lead_paragraph']) ? $item['lead_paragraph'] : null,
+                    'category' => isset($item['section_name']) ? strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['section_name']))) : null,
+                    'image_url' => isset($item['multimedia'][0]) ? 'https://www.nytimes.com/' . $item['multimedia'][0]['url'] : null,
+                    'article_url' => isset($item['web_url']) ? $item['web_url'] : null,
                     'date_published' => $newsTime,
                 ]);
             }
         }
-        
+
         /*
         /
         // Log execution time for next execution reference

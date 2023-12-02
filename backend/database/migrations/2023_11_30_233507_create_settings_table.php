@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->text('sources')->nullable();
+            $table->text('categories')->nullable();
+            $table->text('authors')->nullable();
+            $table->foreignId('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

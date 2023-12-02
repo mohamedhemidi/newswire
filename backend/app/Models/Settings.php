@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Settings extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['user_id', 'sources', 'categories', 'authors'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
