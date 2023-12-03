@@ -13,12 +13,6 @@ class NewsController extends Controller
 
     use HttpResponses;
 
-    public function guestIndex()
-    {
-        return "Guest not authenticated";
-    }
-
-
     public function index(Request $request)
     {
         /*
@@ -45,12 +39,10 @@ class NewsController extends Controller
 
                 // return $query->toSql();
 
-                $filteredNews = $query->get();
-                $count = $filteredNews->count();
+                $filteredNews = $query->paginate(25)->appends($request->all());
 
                 return $this->success([
-                    'count' => $count,
-                    'data' => $filteredNews
+                    $filteredNews
                 ]);
             } catch (\Throwable $th) {
                 return $this->error('', $th, 500);
@@ -72,12 +64,10 @@ class NewsController extends Controller
                     $query->whereIn('source', $request->sources);
                 }
 
-                $filteredNews = $query->get();
-                $count = $filteredNews->count();
+                $filteredNews = $query->paginate(25)->appends($request->all());
 
                 return $this->success([
-                    'count' => $count,
-                    'data' => $filteredNews
+                    $filteredNews
                 ]);
             } catch (\Throwable $th) {
                 return $this->error('', $th, 500);
@@ -85,3 +75,4 @@ class NewsController extends Controller
         }
     }
 }
+

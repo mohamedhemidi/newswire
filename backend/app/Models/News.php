@@ -16,6 +16,8 @@ class News extends Model
         'title', 'article', 'category', 'source'
     ];
 
+    protected $hidden = ["article"];
+
     public function scopeSearch(Builder $builder, $query = '')
     {
         foreach ($this->searchable as $searchable) {
