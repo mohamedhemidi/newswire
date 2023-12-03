@@ -7,7 +7,7 @@
     width: 25%;
 }
 .feedSection {
-    width: 75%;
+    width: 50%;
 }
 @media screen and (max-width: 768px) {
     .container {

@@ -1,43 +1,56 @@
 .cardContainer {
-    background-color: var(--card-bg-color);
-    border-radius: 2rem;
-    padding: 0.4rem;
-    display: flex;
-    flex-direction: column;
-    
+  background-color: var(--card-bg-color);
+  border-radius: 2rem;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
 }
 
 .cardInfo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 1rem;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
 }
 .cardInfo svg {
-    fill: var(--secondary-color);
+  fill: var(--secondary-color);
+}
+.cardCategorySrouce {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  font-size: 0.8rem;
 }
 .cardCategory {
-    color: var(--danger);
-    font-weight: 600;
-    background-color: #FAF1F3;
-    padding: 0.5rem;
-    border-radius: 1rem;
+  color: var(--danger);
+  font-weight: 600;
+  background-color: #faf1f3;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+.cardSource {
+  color: var(--success);
+  font-weight: 600;
+  background-color: #f1faf2;
+  padding: 0.5rem;
+  border-radius: 1rem;
 }
 .cardImage {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
-.cardImage img{
-    border-radius: 2rem;
-    width: 100%;
+.cardImage img {
+  border-radius: 2rem;
+  width: 100%;
 }
 
 .cardActions {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    color: var(--secondary-color);
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  color: var(--secondary-color);
 }
 .cardTitle {
-    padding: 1rem;
+  padding: 1rem;
 }

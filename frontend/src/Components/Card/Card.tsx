@@ -1,27 +1,34 @@
 import ShareIcon from "@Assets/icons/share";
 import styles from "./styles.module.css";
-const Card = () => {
+import moment from "moment";
+import { NewsT } from "src/Types/News";
+
+
+const Card = ({
+  title,
+  source,
+  category,
+  image_url,
+  date_published,
+}: NewsT) => {
   return (
     <article className={styles.cardContainer}>
       <div className={styles.cardImage}>
-        <img
-          src={
-            "https://media.guim.co.uk/840cc4fd844acdef1a8b63ffcbfff40d57f60216/0_283_4985_2993/500.jpg"
-          }
-        />
+        <img src={image_url} />
+        <img src={""} />
       </div>
       <div className={styles.cardInfo}>
-        <span className={styles.cardCategory}>Politics</span>
+        <div className={styles.cardCategorySrouce}>
+          <span className={styles.cardCategory}>{category}</span>
+          <span className={styles.cardSource}>{source}</span>
+        </div>
         <span className={styles.cardActions}>
-           <p>25m ago</p> 
+          <p>{moment(date_published).startOf("hour").fromNow()}</p>
           <ShareIcon />
         </span>
       </div>
       <div className={styles.cardTitle}>
-        <h3>
-          Russia-Ukraine war live: Kyiv accuses Russia of executing surrendering
-          soldiers
-        </h3>
+        <h3>{title}</h3>
       </div>
     </article>
   );
