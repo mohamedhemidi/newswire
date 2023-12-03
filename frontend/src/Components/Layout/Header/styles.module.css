@@ -8,6 +8,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 0.5rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .links {
@@ -20,7 +21,10 @@
   gap: 1rem;
 }
 
-#menuToggle {
+#menuOpen {
+  display: none;
+}
+#menuClose {
   display: none;
 }
 
@@ -38,7 +42,10 @@
     gap: 1rem;
   }
 
-  #menuToggle {
+  #menuOpen {
+    display: block;
+  }
+  #menuClose {
     display: block;
   }
   .navLinks {

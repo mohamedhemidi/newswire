@@ -23,14 +23,16 @@
 [data-theme="dark"] {
   --primary-color: #F7F8F9;
   --secondary-color: #cdcdcd;
-  --bg-color: #242424;
+  --bg-color: #010101;
   --header-bg-color: #171717;
+  --card-bg-color: #171717;
 }
 [data-theme="light"] {
   --primary-color: #212427;
   --secondary-color: #7C7C7C;
   --bg-color: #F7F8F9;
   --header-bg-color: #FFFFFF;
+  --card-bg-color: #FFFFFF;
 }
 
 body {

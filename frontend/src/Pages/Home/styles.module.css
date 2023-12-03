@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+.categoriesSection {
+    width: 25%;
+}
+.feedSection {
+    width: 75%;
+}
+@media screen and (max-width: 768px) {
+    .container {
+      flex-direction: column-reverse;
+    }
+    .categoriesSection,.feedSection {
+        width: 100%;
+    }
+  }
+  

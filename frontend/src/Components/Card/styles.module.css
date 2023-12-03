@@ -1,0 +1,43 @@
+.cardContainer {
+    background-color: var(--card-bg-color);
+    border-radius: 2rem;
+    padding: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.cardInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    align-items: center;
+}
+.cardInfo svg {
+    fill: var(--secondary-color);
+}
+.cardCategory {
+    color: var(--danger);
+    font-weight: 600;
+    background-color: #FAF1F3;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+.cardImage {
+    margin-bottom: 1rem;
+}
+.cardImage img{
+    border-radius: 2rem;
+    width: 100%;
+}
+
+.cardActions {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    color: var(--secondary-color);
+}
+.cardTitle {
+    padding: 1rem;
+}
