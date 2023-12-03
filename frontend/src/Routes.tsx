@@ -1,5 +1,6 @@
+import { Home } from "@Pages/Home";
 import { Route, Routes as Switch } from "react-router-dom";
-import { Home } from "./Pages/Home";
+
 
 const Routes = () => {
   return (

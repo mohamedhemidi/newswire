@@ -18,7 +18,6 @@ const Header = () => {
   const menuStyle = `
    ${menuOpen ? styles["active"] : ""} 
   `;
-  console.log(menuOpen);
   return (
     <header className={styles.container}>
       <div className={styles.logo}>

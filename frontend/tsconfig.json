@@ -19,7 +19,10 @@
       "@Assets/*": ["src/Assets/*"],
       "@Components/*": ["src/Components/*"],
       "@Reducers/*": ["src/Reducers/*"],
-      "@Utils/*": ["src/Utils/*"]
+      "@Utils/*": ["src/Utils/*"],
+      "@Services/*": ["src/Services/*"],
+      "@Constants/*": ["src/Constants/*"],
+      "@Pages/*": ["src/Pages/*"]
     },
 
     /* Linting */
