@@ -9,6 +9,9 @@
 .feedSection {
     width: 50%;
 }
+.loadMoreButton, .loadMoreButton > button{
+    width: 100%;
+}
 @media screen and (max-width: 768px) {
     .container {
       flex-direction: column-reverse;
