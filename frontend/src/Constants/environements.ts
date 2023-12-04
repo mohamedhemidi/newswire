@@ -11,8 +11,11 @@ type ObjectKey = keyof typeof BASE_URL;
 export const PATH = {
   // News
   fetchNews: `${BASE_URL[ENV]}/api/news`,
+  fetchCategories: `${BASE_URL[ENV]}/api/getCategories`,
+  fetchSources: `${BASE_URL[ENV]}/api/getSources`,
   // Users
   userLogin: `${BASE_URL[ENV]}/api/auth/login`,
   userSignup: `${BASE_URL[ENV]}/api/auth/register`,
   userProfile: `${BASE_URL[ENV]}/api/user`,
+  updateSettings: `${BASE_URL[ENV]}/api/user/settings/update`,
 };

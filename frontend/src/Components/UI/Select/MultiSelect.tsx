@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 
 export type SelectOption = {
-  label: string;
-  value: string | number;
+  label?: string;
+  value?: string | number;
 };
 
 type MultipleSelectProps = {

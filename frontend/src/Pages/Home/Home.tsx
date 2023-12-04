@@ -55,9 +55,6 @@ const Home = () => {
   const handleLoadMore = () => {
     setPageNumber((prevPage) => prevPage + 1);
   };
-
-  console.log("############", data);
-
   return (
     <main className={styles.container}>
       <div className={styles.categoriesSection}>
