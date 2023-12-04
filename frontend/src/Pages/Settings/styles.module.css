@@ -20,4 +20,5 @@
 
   .settingsFormLabel {
     text-align: left;
+    color: var(--secondary-color)
   }

@@ -13,6 +13,7 @@ import { Button } from "@mohamedhemidi/vault-ui";
 
 const Home = () => {
   const dispatch = useAppDispatch();
+  const token = localStorage.getItem("token");
 
   const [data, setNewsData] = useState<NewsT[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
@@ -21,19 +22,34 @@ const Home = () => {
   const authenticated = checkAuth();
 
   const { loading } = useAppSelector((state) => state.news);
+  const { keyword, sources, categories } = useAppSelector(
+    (state) => state.search
+  );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const query = {
-    keyword: "",
-    sources: ["the-guardian", "new-york-times"],
-    categories: ["news", "arts"],
-  };
+  // const query = {
+  //   keyword: "",
+  //   sources: ["the-guardian", "new-york-times"],
+  //   categories: ["news", "arts"],
+  // };
+  // const query = {
+  //   keyword: "",
+  //   sources: "",
+  //   categories: "",
+  // };
 
   useEffect(() => {
+    const query = {
+      keyword,
+      sources,
+      categories,
+    };
     const fetchPosts = async () => {
       try {
         setScrollLoading(true);
-        dispatch(fetchNews({ query: query, page: pageNumber })).then((res) => {
+        dispatch(
+          fetchNews({ query: query, page: pageNumber, credentials: token })
+        ).then((res) => {
           // setNewsData((prev) => [...prev, ...res.payload.data]);
           setNewsData(res.payload.data);
         });
@@ -50,7 +66,7 @@ const Home = () => {
     fetchPosts();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageNumber]);
+  }, [pageNumber, keyword, sources, categories]);
 
   const handleLoadMore = () => {
     setPageNumber((prevPage) => prevPage + 1);
@@ -77,11 +93,19 @@ const Home = () => {
               );
             })
           : loading && <Loader />}
-        {scrollLoading && <Loader />}
+        {data && !loading && !data.length && (
+          <p>
+            No news available, you may check your settings or choose other
+            search
+          </p>
+        )}
+        {scrollLoading && !loading && <Loader />}
         <div className={styles.loadMoreButton}>
-          <Button color="primary" variant="filled" onClick={handleLoadMore}>
-            Load more news
-          </Button>
+          {!loading && (
+            <Button color="primary" variant="filled" onClick={handleLoadMore}>
+              Load more news
+            </Button>
+          )}
         </div>
       </div>
     </main>

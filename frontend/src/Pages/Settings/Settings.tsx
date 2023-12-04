@@ -1,59 +1,24 @@
 import { MultiSelect } from "@Components/UI/Select";
 import styles from "./styles.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAppDispatch } from "@Utils/ReduxHooks";
-import {
-  fetchCategories,
-  fetchSources,
-  updateSettings,
-} from "@Services/settings.services";
-import { transformDataToSelect } from "@Utils/DataHelper";
+import { updateSettings } from "@Services/settings.services";
 import { Button } from "@mohamedhemidi/vault-ui";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
-interface Category {
-  [key: string]: string;
-}
-interface Source {
-  [key: string]: string;
-}
-
-interface Settings {
-  categories: Category[];
-  sources: Source[];
-}
+import useGetFilters from "@Utils/useGetFilters";
 
 const Settings = () => {
   const dispatch = useAppDispatch();
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  const [settings, setSettings] = useState<Settings>({
-    categories: [],
-    sources: [],
-  });
 
   const [selectedSettings, setSelectedSettings] = useState({
     categories: [],
     sources: [],
   });
 
-  useEffect(() => {
-    dispatch(fetchCategories()).then((res) => {
-      const data = transformDataToSelect(res.payload.categories);
-      setSettings((prev) => ({
-        ...prev,
-        categories: data,
-      }));
-    });
-    dispatch(fetchSources()).then((res) => {
-      const data = transformDataToSelect(res.payload.sources);
-      setSettings((prev) => ({
-        ...prev,
-        sources: data,
-      }));
-    });
-  }, [dispatch]);
+  const settings = useGetFilters();
 
   const handleSelect = (e: unknown, key: string) => {
     setSelectedSettings((prev) => {

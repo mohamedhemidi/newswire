@@ -14,8 +14,12 @@ import { checkAuth, logout } from "@Utils/Auth";
 import SettingsIcon from "@Assets/icons/settings";
 import LogoutIcon from "@Assets/icons/logout";
 import NotificationIcon from "@Assets/icons/notification";
+import { AdvancedSearch } from "@Components/AdvancedSearch";
+import { openSearchModal } from "@Reducers/UIReducer";
+import { useAppDispatch } from "@Utils/ReduxHooks";
 
 const Header = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate();
   const authenticated = checkAuth();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,6 +33,7 @@ const Header = () => {
   `;
   return (
     <header className={styles.container}>
+      <AdvancedSearch/>
       <div className={styles.logo}>
         <h1>
           <Link to={"/"}>NewsWire</Link>
@@ -66,26 +71,32 @@ const Header = () => {
           </Button>
           {authenticated ? (
             <>
-            <Button
-            icon={<SettingsIcon />}
-            variant="ghost"
-            color="neutral"
-            onClick={() => {
-              return navigate("/settings");
-            }}
-          >Settings</Button>
-            <Button
-            icon={<LogoutIcon />}
-            variant="ghost"
-            color="neutral"
-            onClick={() => logout(()=> navigate('/'))}
-          >Logout</Button>
-            <Button
-            icon={<NotificationIcon />}
-            variant="ghost"
-            color="neutral"
-            onClick={() => {}}
-          >Notifications</Button>
+              <Button
+                icon={<SettingsIcon />}
+                variant="ghost"
+                color="neutral"
+                onClick={() => {
+                  return navigate("/settings");
+                }}
+              >
+                Settings
+              </Button>
+              <Button
+                icon={<LogoutIcon />}
+                variant="ghost"
+                color="neutral"
+                onClick={() => logout(() => navigate("/"))}
+              >
+                Logout
+              </Button>
+              <Button
+                icon={<NotificationIcon />}
+                variant="ghost"
+                color="neutral"
+                onClick={() => {}}
+              >
+                Notifications
+              </Button>
             </>
           ) : (
             <>
@@ -111,7 +122,12 @@ const Header = () => {
               </Button>
             </>
           )}
-          <Button icon={<FilterIcon />} variant="ghost" color="neutral">
+          <Button
+            icon={<FilterIcon />}
+            onClick={() => dispatch(openSearchModal())}
+            variant="ghost"
+            color="neutral"
+          >
             Advanced Search
           </Button>
         </div>

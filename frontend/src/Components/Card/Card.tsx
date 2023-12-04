@@ -2,7 +2,7 @@ import ShareIcon from "@Assets/icons/share";
 import styles from "./styles.module.css";
 import moment from "moment";
 import { NewsT } from "src/Types/News";
-
+import ImagePlaceholder from "@Assets/images/no_image_placeholder.png";
 
 const Card = ({
   title,
@@ -14,8 +14,7 @@ const Card = ({
   return (
     <article className={styles.cardContainer}>
       <div className={styles.cardImage}>
-        <img src={image_url} />
-        <img src={""} />
+        <img src={image_url ? image_url : ImagePlaceholder} />
       </div>
       <div className={styles.cardInfo}>
         <div className={styles.cardCategorySrouce}>

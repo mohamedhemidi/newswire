@@ -2,21 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   theme: "light",
-  sidebar_collapsed: true,
+  search_modal: false,
 };
 
 const UISlice = createSlice({
-  name: "theme",
+  name: "UI",
   initialState,
   reducers: {
     toggleTheme: (state) => {
       state.theme = state.theme === "light" ? "dark" : "light";
     },
-    toggleSidebar: (state) => {
-      state.sidebar_collapsed = !state.sidebar_collapsed;
+    openSearchModal: (state) => {
+      state.search_modal = true;
+    },
+    closeSearchModal: (state) => {
+      state.search_modal = false;
     },
   },
 });
 
-export const { toggleTheme, toggleSidebar } = UISlice.actions;
+export const { toggleTheme, openSearchModal,closeSearchModal } = UISlice.actions;
 export default UISlice.reducer;

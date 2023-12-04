@@ -21,7 +21,6 @@ const newsSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchNews.fulfilled, (state, { payload }) => {
-        // console.log("==PAYLOAD==", payload)
         state.loading = false;
         state.total = payload.total;
         state.data = payload.data;
