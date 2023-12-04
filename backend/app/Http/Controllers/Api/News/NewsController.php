@@ -39,7 +39,7 @@ class NewsController extends Controller
 
                 // return $query->toSql();
 
-                $filteredNews = $query->paginate(25)->appends($request->all());
+                $filteredNews = $query->orderBy('date_published', 'desc')->paginate(25)->appends($request->all());
 
                 return $this->success([
                     $filteredNews
@@ -64,7 +64,7 @@ class NewsController extends Controller
                     $query->whereIn('source', $request->sources);
                 }
 
-                $filteredNews = $query->paginate(25)->appends($request->all());
+                $filteredNews = $query->orderBy('date_published', 'desc')->paginate(25)->appends($request->all());
 
                 return $this->success([
                     $filteredNews
