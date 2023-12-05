@@ -5,4 +5,5 @@ export type NewsT = {
     category: string;
     image_url: string;
     date_published: string;
+    article?: string
 };

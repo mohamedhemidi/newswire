@@ -5,7 +5,7 @@ import { PATH } from "@Constants/environements";
 type Props = {
   query: unknown;
   page?: number;
-  credentials?: string | null
+  credentials?: string | null;
 };
 
 export const fetchNews = createAsyncThunk(
@@ -22,6 +22,17 @@ export const fetchNews = createAsyncThunk(
         }
       );
       return response.data.data[0];
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+export const fetchArticle = createAsyncThunk(
+  "news/fetchArticle",
+  async (id: unknown) => {
+    try {
+      const response = await axios.get(`${PATH.fetchArticle}/${id}`);
+      return response.data;
     } catch (error) {
       console.log(error);
     }

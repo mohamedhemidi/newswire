@@ -73,6 +73,7 @@ const Home = () => {
               return (
                 <Card
                   key={i.id}
+                  id={i.id}
                   title={i.title}
                   source={i.source}
                   category={i.category}

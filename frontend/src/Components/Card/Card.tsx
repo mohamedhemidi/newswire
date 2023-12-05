@@ -3,8 +3,10 @@ import styles from "./styles.module.css";
 import moment from "moment";
 import { NewsT } from "src/Types/News";
 import ImagePlaceholder from "@Assets/images/no_image_placeholder.png";
+import { Link } from "react-router-dom";
 
 const Card = ({
+  id,
   title,
   source,
   category,
@@ -27,7 +29,7 @@ const Card = ({
         </span>
       </div>
       <div className={styles.cardTitle}>
-        <h3>{title}</h3>
+        <Link to={`/article/${id}`}><h3>{title}</h3></Link>
       </div>
     </article>
   );
