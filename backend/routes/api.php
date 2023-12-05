@@ -32,6 +32,7 @@ Route::post('/auth/register', [RegisterUserController::class, 'register']);
 
 // News & Filters
 Route::post('/news', [NewsController::class, 'index']);
+Route::get('/news/{id}', [NewsController::class, 'show']);
 Route::get('/getCategories', [SettingsController::class, 'getCategories']);
 Route::get('/getSources', [SettingsController::class, 'getSources']);
 
