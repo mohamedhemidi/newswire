@@ -8,8 +8,9 @@ import { useAppDispatch, useAppSelector } from "@Utils/ReduxHooks";
 import { Loader } from "@Components/Loader";
 import { NewsT } from "src/Types/News";
 import { ProfileCard } from "@Components/ProfileCard";
-import { checkAuth } from "@Utils/Auth";
+import { checkAuth } from "@Utils/AuthHelper";
 import { Button } from "@mohamedhemidi/vault-ui";
+
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -18,25 +19,13 @@ const Home = () => {
   const [data, setNewsData] = useState<NewsT[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [scrollLoading, setScrollLoading] = useState(false);
-
   const authenticated = checkAuth();
+  const { user } = useAppSelector((state) => state.users);
 
   const { loading } = useAppSelector((state) => state.news);
   const { keyword, sources, categories } = useAppSelector(
     (state) => state.search
   );
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // const query = {
-  //   keyword: "",
-  //   sources: ["the-guardian", "new-york-times"],
-  //   categories: ["news", "arts"],
-  // };
-  // const query = {
-  //   keyword: "",
-  //   sources: "",
-  //   categories: "",
-  // };
 
   useEffect(() => {
     const query = {
@@ -74,7 +63,7 @@ const Home = () => {
   return (
     <main className={styles.container}>
       <div className={styles.categoriesSection}>
-        {authenticated ? <ProfileCard /> : null}
+        {authenticated && user ? <ProfileCard /> : null}
         <CategoryBar />
       </div>
       <div className={styles.feedSection}>
@@ -96,7 +85,7 @@ const Home = () => {
         {data && !loading && !data.length && (
           <p>
             No news available, you may check your settings or choose other
-            search
+            filters
           </p>
         )}
         {scrollLoading && !loading && <Loader />}

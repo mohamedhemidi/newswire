@@ -8,9 +8,11 @@ import { useState } from "react";
 import { setSearch } from "@Reducers/SearchReducer";
 import { TextField } from "@mohamedhemidi/vault-ui";
 import useTransformSelection from "@Utils/useTransformSelection";
+import { useNavigate } from "react-router-dom";
 
 const AdvancedSearch = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const settings = useGetFilters();
 
   const { search_modal } = useAppSelector((state) => state.UI);
@@ -34,6 +36,9 @@ const AdvancedSearch = () => {
       sources: data.sources,
     };
     dispatch(setSearch(query));
+    dispatch(closeSearchModal());
+    navigate('/')
+    
   };
 
   return (

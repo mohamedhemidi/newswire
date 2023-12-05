@@ -1,3 +1,4 @@
+import { Article } from "@Pages/Article";
 import { Home } from "@Pages/Home";
 import { Login } from "@Pages/Login";
 import Page404 from "@Pages/Page404/Page404";
@@ -10,7 +11,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route path="/" element={<Home />} />
-      <Route path="/article" element={""} />
+      <Route path="/article/:id" element={<Article/>} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route element={<PrivateRoutes />}>

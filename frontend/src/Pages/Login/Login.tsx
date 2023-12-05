@@ -2,8 +2,8 @@ import { Button, TextField } from "@mohamedhemidi/vault-ui";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@Utils/ReduxHooks";
-import { userLogin } from "@Services/users.services";
-import { checkAuth } from "@Utils/Auth";
+import { userLogin, userProfile } from "@Services/users.services";
+import { checkAuth } from "@Utils/AuthHelper";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -17,7 +17,8 @@ const Login = () => {
   });
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(userLogin(loginData)).then(() => {
+    dispatch(userLogin(loginData)).then((res) => {
+      dispatch(userProfile(res.payload.data.token));
       Swal.fire({
         title: "Welcome!",
         text: "Happy Reading!",

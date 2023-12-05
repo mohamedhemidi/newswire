@@ -10,7 +10,7 @@ import CloseIcon from "@Assets/icons/close";
 import { Link, useNavigate } from "react-router-dom";
 import LoginIcon from "@Assets/icons/login";
 import SignupIcon from "@Assets/icons/signup";
-import { checkAuth, logout } from "@Utils/Auth";
+import { checkAuth, logout } from "@Utils/AuthHelper";
 import SettingsIcon from "@Assets/icons/settings";
 import LogoutIcon from "@Assets/icons/logout";
 import NotificationIcon from "@Assets/icons/notification";
@@ -19,7 +19,7 @@ import { openSearchModal } from "@Reducers/UIReducer";
 import { useAppDispatch } from "@Utils/ReduxHooks";
 
 const Header = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const authenticated = checkAuth();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,7 +33,7 @@ const Header = () => {
   `;
   return (
     <header className={styles.container}>
-      <AdvancedSearch/>
+      <AdvancedSearch />
       <div className={styles.logo}>
         <h1>
           <Link to={"/"}>NewsWire</Link>
@@ -85,7 +85,11 @@ const Header = () => {
                 icon={<LogoutIcon />}
                 variant="ghost"
                 color="neutral"
-                onClick={() => logout(() => navigate("/"))}
+                onClick={() =>
+                  logout(() => {
+                    navigate(0);
+                  })
+                }
               >
                 Logout
               </Button>
