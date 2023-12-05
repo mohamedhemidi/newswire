@@ -1,0 +1,44 @@
+version: '4.25.2'
+services:
+    backend:
+      build:
+        context: ./backend  
+        dockerfile: Dockerfile 
+      environment:
+        DB_HOST: db
+        DB_PORT: 3306
+        DB_DATABASE: newswire
+        DB_USERNAME: root
+        DB_PASSWORD: root
+      ports:
+        - 8000:8000   
+      volumes:
+        - ./backend:/app/backend   
+      depends_on:
+        - db   
+      networks:
+        - app
+    # frontend:
+    #   build:
+    #     context: ./frontend  
+    #     dockerfile: Dockerfile
+    #   tty: true  
+    #   ports:
+    #     - 5173:5173   
+    #   volumes:
+    #     - ./frontend:/app/frontend
+    #   depends_on:
+    #     - backend     
+    #   networks:
+    #     - app
+    db:
+      image: mysql:8.2.0
+      environment: 
+        MYSQL_DATABASE: 'newswire'
+        MYSQL_PASSWORD: 'root'
+        MYSQL_ROOT_PASSWORD: 'root'
+      networks:
+        - app
+networks:
+    app:
+      driver: 'bridge'
