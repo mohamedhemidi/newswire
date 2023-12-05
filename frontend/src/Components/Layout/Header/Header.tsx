@@ -13,7 +13,6 @@ import SignupIcon from "@Assets/icons/signup";
 import { checkAuth, logout } from "@Utils/AuthHelper";
 import SettingsIcon from "@Assets/icons/settings";
 import LogoutIcon from "@Assets/icons/logout";
-import NotificationIcon from "@Assets/icons/notification";
 import { AdvancedSearch } from "@Components/AdvancedSearch";
 import { openSearchModal } from "@Reducers/UIReducer";
 import { useAppDispatch } from "@Utils/ReduxHooks";
@@ -93,14 +92,14 @@ const Header = () => {
               >
                 Logout
               </Button>
-              <Button
+              {/* <Button
                 icon={<NotificationIcon />}
                 variant="ghost"
                 color="neutral"
                 onClick={() => {}}
               >
                 Notifications
-              </Button>
+              </Button> */}
             </>
           ) : (
             <>

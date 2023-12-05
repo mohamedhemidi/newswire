@@ -7,6 +7,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { NewsT } from "src/Types/News";
 import ImagePlaceholder from "@Assets/images/no_image_placeholder.png";
 import { splitArticleIntoParagraphs } from "@Utils/ArticleHelper";
+import { Button } from "@mohamedhemidi/vault-ui";
+import { Link } from "react-router-dom";
+import ArrowForwardIcon from "@Assets/icons/arrow_forward";
 
 const Article = () => {
   const { id } = useParams();
@@ -36,7 +39,16 @@ const Article = () => {
             <img
               src={article.image_url ? article.image_url : ImagePlaceholder}
             />
+            <Button color="primary" width={15} icon={<ArrowForwardIcon/>}>
+              <Link
+                target="_blank"
+                to={article.article_url ? article.article_url : "#"}
+              >
+                Read in source website
+              </Link>
+            </Button>
             <h2>{article.title}</h2>
+            
 
             {article.article &&
               splitArticleIntoParagraphs(article?.article, 3).map((i) => {

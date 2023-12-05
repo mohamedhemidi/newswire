@@ -1,16 +1,26 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useAppSelector } from "@Utils/ReduxHooks";
 import styles from "./styles.module.css";
-const CategoryBar = () => {
+
+const CategoryBar = ({ onCategoryClick }: any) => {
+  const { categories } = useAppSelector((state) => state.settings.data);
+
+  const selectCategory = (data: any) => {
+    onCategoryClick(data);
+  };
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Category</h2>
-      <nav>
-        <p>Politics</p>
-        <p>National</p>
-        <p>International</p>
-        <p>Business</p>
-        <p>News</p>
-        <p>Finance</p>
-        <p>Jobs</p>
+      <h2 className={styles.title}>Categories</h2>
+      <nav className={styles.links}>
+        {categories.map((category, index) => {
+          const [categoryKey, categoryValue] = Object.entries(category)[0];
+          return (
+            <p key={index} onClick={() => selectCategory(categoryValue)}>
+              {categoryKey}
+            </p>
+          );
+        })}
       </nav>
     </div>
   );

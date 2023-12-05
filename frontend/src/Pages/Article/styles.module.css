@@ -19,6 +19,10 @@
   border-radius: 2rem;
   width: 100%;
 }
+.article a {
+  text-decoration: none;
+  color: inherit;
+}
 
 .text {
     color: var(--primary-color);

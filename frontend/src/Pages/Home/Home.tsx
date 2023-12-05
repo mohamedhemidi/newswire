@@ -11,13 +11,12 @@ import { ProfileCard } from "@Components/ProfileCard";
 import { checkAuth } from "@Utils/AuthHelper";
 import { Button } from "@mohamedhemidi/vault-ui";
 
-
 const Home = () => {
   const dispatch = useAppDispatch();
   const token = localStorage.getItem("token");
 
   const [data, setNewsData] = useState<NewsT[]>([]);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
   const [scrollLoading, setScrollLoading] = useState(false);
   const authenticated = checkAuth();
   const { user } = useAppSelector((state) => state.users);
@@ -39,8 +38,8 @@ const Home = () => {
         dispatch(
           fetchNews({ query: query, page: pageNumber, credentials: token })
         ).then((res) => {
-          // setNewsData((prev) => [...prev, ...res.payload.data]);
-          setNewsData(res.payload.data);
+          setNewsData((prev) => [...prev, ...res.payload.data]);
+          // setNewsData(res.payload.data);
         });
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -49,22 +48,39 @@ const Home = () => {
       }
     };
 
-    // if (pageNumber > 1) {
-    //   fetchPosts();
-    // }
-    fetchPosts();
+    if (pageNumber > 0) {
+      fetchPosts();
+    }
+    // fetchPosts();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber, keyword, sources, categories]);
 
+  useEffect(() => {
+    setPageNumber(pageNumber + 1);
+  }, []);
+
   const handleLoadMore = () => {
     setPageNumber((prevPage) => prevPage + 1);
   };
+
+  const onCategoryClick = (data: unknown) => {
+    dispatch(
+      fetchNews({
+        query: {
+          categories: [data],
+        },
+      })
+    ).then((res) => {
+      setNewsData(res.payload.data);
+    });
+  };
+
   return (
     <main className={styles.container}>
       <div className={styles.categoriesSection}>
         {authenticated && user ? <ProfileCard /> : null}
-        <CategoryBar />
+        <CategoryBar onCategoryClick={onCategoryClick} />
       </div>
       <div className={styles.feedSection}>
         <SectionHeader title={"News feed"} />

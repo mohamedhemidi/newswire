@@ -44,7 +44,7 @@ const Settings = () => {
 
     dispatch(updateSettings({ data: data, credentials: token })).then((res) => {
       Swal.fire({
-        title: "Welcome!",
+        title: "Done!",
         text: res.payload.data.message,
         icon: "success",
         confirmButtonText: "Close",
