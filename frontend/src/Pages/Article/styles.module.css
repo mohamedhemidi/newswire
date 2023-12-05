@@ -6,7 +6,7 @@
   align-items: center;
 }
 .article {
-    width: 65%;
+  width: 65%;
   background-color: var(--card-bg-color);
   border-radius: 2rem;
   padding: 1rem;
@@ -25,5 +25,11 @@
 }
 
 .text {
-    color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+  .article {
+    width: 100%;
+  }
 }

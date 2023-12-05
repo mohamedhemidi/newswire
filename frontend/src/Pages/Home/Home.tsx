@@ -38,8 +38,8 @@ const Home = () => {
         dispatch(
           fetchNews({ query: query, page: pageNumber, credentials: token })
         ).then((res) => {
-          setNewsData((prev) => [...prev, ...res.payload.data]);
-          // setNewsData(res.payload.data);
+          // setNewsData((prev) => [...prev, ...res.payload.data]);
+          setNewsData(res.payload.data);
         });
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -57,7 +57,7 @@ const Home = () => {
   }, [pageNumber, keyword, sources, categories]);
 
   useEffect(() => {
-    setPageNumber(pageNumber + 1);
+    setPageNumber((prevPage) => prevPage + 1);
   }, []);
 
   const handleLoadMore = () => {

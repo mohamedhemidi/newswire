@@ -39,16 +39,17 @@ const Article = () => {
             <img
               src={article.image_url ? article.image_url : ImagePlaceholder}
             />
-            <Button color="primary" width={15} icon={<ArrowForwardIcon/>}>
-              <Link
-                target="_blank"
-                to={article.article_url ? article.article_url : "#"}
-              >
-                Read in source website
-              </Link>
-            </Button>
+
+            <Link
+              target="_blank"
+              to={article.article_url ? article.article_url : "#"}
+            >
+              <Button color="primary" width={15} icon={<ArrowForwardIcon />}>
+                Read in source website{" "}
+              </Button>
+            </Link>
+
             <h2>{article.title}</h2>
-            
 
             {article.article &&
               splitArticleIntoParagraphs(article?.article, 3).map((i) => {
