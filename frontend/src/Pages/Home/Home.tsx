@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { Card } from "@Components/Card";
 import { CategoryBar } from "@Components/CategoryBar";
@@ -16,7 +16,7 @@ const Home = () => {
   const token = localStorage.getItem("token");
 
   const [data, setNewsData] = useState<NewsT[]>([]);
-  const [pageNumber, setPageNumber] = useState(0);
+  const [pageNumber, setPageNumber] = useState(1);
   const [scrollLoading, setScrollLoading] = useState(false);
   const authenticated = checkAuth();
   const { user } = useAppSelector((state) => state.users);
@@ -26,42 +26,35 @@ const Home = () => {
     (state) => state.search
   );
 
+  const shouldLog = useRef(true);
+
   useEffect(() => {
     const query = {
       keyword,
       sources,
       categories,
     };
-    const fetchPosts = async () => {
-      try {
-        setScrollLoading(true);
-        dispatch(
-          fetchNews({ query: query, page: pageNumber, credentials: token })
-        ).then((res) => {
-          // setNewsData((prev) => [...prev, ...res.payload.data]);
-          setNewsData(res.payload.data);
-        });
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      } finally {
+    const fetchPosts = () => {
+      setScrollLoading(true);
+      dispatch(
+        fetchNews({ query: query, page: pageNumber, credentials: token })
+      ).then((res) => {
+        setNewsData((prev) => [...prev, ...res.payload.data]);
         setScrollLoading(false);
-      }
+      });
     };
 
-    if (pageNumber > 0) {
+    if (shouldLog.current) {
+      shouldLog.current = false;
       fetchPosts();
     }
-    // fetchPosts();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageNumber, keyword, sources, categories]);
-
-  useEffect(() => {
-    setPageNumber((prevPage) => prevPage + 1);
-  }, []);
+  }, [pageNumber]);
 
   const handleLoadMore = () => {
     setPageNumber((prevPage) => prevPage + 1);
+    shouldLog.current = true;
   };
 
   const onCategoryClick = (data: unknown) => {
@@ -105,13 +98,18 @@ const Home = () => {
             filters
           </p>
         )}
-        {scrollLoading && !loading && <Loader />}
+
         <div className={styles.loadMoreButton}>
-          {!loading && (
-            <Button color="primary" variant="filled" onClick={handleLoadMore}>
+          {!loading ? (
+            <Button
+              color="primary"
+              variant="filled"
+              onClick={handleLoadMore}
+              loading={scrollLoading}
+            >
               Load more news
             </Button>
-          )}
+          ) : null}
         </div>
       </div>
     </main>
