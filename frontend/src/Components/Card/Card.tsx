@@ -4,9 +4,9 @@ import moment from "moment";
 import { NewsT } from "src/Types/News";
 import ImagePlaceholder from "@Assets/images/no_image_placeholder.png";
 import { Link } from "react-router-dom";
-import { memo } from "react";
+import { LazyLoadImage } from "@Components/LazyLoadImage";
 
-const Card = memo(({
+const Card = ({
   id,
   title,
   source,
@@ -16,9 +16,11 @@ const Card = memo(({
 }: NewsT) => {
   return (
     <article className={styles.cardContainer}>
-      <div className={styles.cardImage}>
-        <img src={image_url ? image_url : ImagePlaceholder} />
-      </div>
+      <LazyLoadImage
+        borderRadius="2rem"
+        alt={title}
+        src={image_url ? image_url : ImagePlaceholder}
+      />
       <div className={styles.cardInfo}>
         <div className={styles.cardCategorySrouce}>
           <span className={styles.cardCategory}>{category}</span>
@@ -30,10 +32,11 @@ const Card = memo(({
         </span>
       </div>
       <div className={styles.cardTitle}>
-        <Link to={`/article/${id}`}><h3>{title}</h3></Link>
+        <Link to={`/article/${id}`}>
+          <h3>{title}</h3>
+        </Link>
       </div>
     </article>
   );
-});
-
+};
 export default Card;
