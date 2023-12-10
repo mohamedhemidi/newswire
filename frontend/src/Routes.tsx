@@ -6,18 +6,21 @@ import { Settings } from "@Pages/Settings";
 import { Signup } from "@Pages/Signup";
 import PrivateRoutes from "@Utils/PrivateRoutes";
 import { Route, Routes as Switch } from "react-router-dom";
+import { Layout } from "./Layouts";
 
 const Routes = () => {
   return (
     <Switch>
-      <Route path="/" element={<Home />} />
-      <Route path="/article/:id" element={<Article/>} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route element={<PrivateRoutes />}>
-        <Route path="/settings" element={<Settings />} />
+      <Route path="/" element={<Layout />}>
+        <Route path="" element={<Home />} />
+        <Route path="/article/:id" element={<Article />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/settings" element={<Settings />} />
+        </Route>
+        <Route path="*" element={<Page404 />} />
       </Route>
-      <Route path="*" element={<Page404 />} />
     </Switch>
   );
 };

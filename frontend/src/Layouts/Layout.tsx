@@ -1,11 +1,13 @@
+import { Outlet } from "react-router-dom";
 import styles from "./styles.module.css";
 
-type Props = {
-  children: React.ReactNode;
-};
 
-const Layout = ({ children }: Props) => {
-  return <main className={styles.main}>{children}</main>;
+const Layout = () => {
+  return (
+    <main className={styles.main}>
+      <Outlet />
+    </main>
+  );
 };
 
 export default Layout;
