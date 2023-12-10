@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@Utils/ReduxHooks";
-import { Header } from "@Components/Layout/Header";
 import Routes from "./Routes";
 import { userProfile } from "@Services/users.services";
 
@@ -22,7 +21,6 @@ function App() {
   return (
     <>
       <Router>
-        <Header />
         <Routes />
       </Router>
     </>
