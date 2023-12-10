@@ -4,7 +4,7 @@ import moment from "moment";
 import { NewsT } from "src/Types/News";
 import ImagePlaceholder from "@Assets/images/no_image_placeholder.png";
 import { Link } from "react-router-dom";
-import { LazyLoadImage } from "@Components/LazyLoadImage";
+import { LazyLoadImage } from "@mohamedhemidi/vault-ui";
 
 const Card = ({
   id,

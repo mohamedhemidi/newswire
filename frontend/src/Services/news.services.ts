@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { PATH } from "@Constants/environements";
+import { PATH } from "@Constants/environments";
 
 type Props = {
   query: unknown;
