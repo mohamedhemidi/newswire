@@ -1,5 +1,5 @@
 import { fetchNews } from "services/news.services";
-import { createSlice } from "reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {

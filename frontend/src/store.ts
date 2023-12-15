@@ -1,4 +1,4 @@
-import { configureStore } from "reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import thunkMiddleware from "redux-thunk";
 import UIReducer from "reducers/UIReducer";
 import newsReducer from "reducers/NewsReducer";
