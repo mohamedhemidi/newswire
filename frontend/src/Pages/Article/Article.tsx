@@ -1,15 +1,15 @@
-import { useAppDispatch } from "@Utils/ReduxHooks";
+import { useAppDispatch } from "utils/ReduxHooks";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
-import { fetchArticle } from "@Services/news.services";
-import { Loader } from "@Components/Loader";
+import { fetchArticle } from "services/news.services";
+import { Loader } from "components/Loader";
 import { useNavigate, useParams } from "react-router-dom";
-import { NewsT } from "src/Types/News";
-import ImagePlaceholder from "@Assets/images/no_image_placeholder.png";
-import { splitArticleIntoParagraphs } from "@Utils/ArticleHelper";
+import { NewsT } from "types/News";
+import ImagePlaceholder from "assets/images/no_image_placeholder.png";
+import { splitArticleIntoParagraphs } from "utils/ArticleHelper";
 import { Button } from "@mohamedhemidi/vault-ui";
 import { Link } from "react-router-dom";
-import ArrowForwardIcon from "@Assets/icons/arrow_forward";
+import ArrowForwardIcon from "assets/icons/arrow_forward";
 
 const Article = () => {
   const { id } = useParams();

@@ -1,5 +1,5 @@
-import { fetchCategories, fetchSources } from "@Services/settings.services";
-import { createSlice } from "@reduxjs/toolkit";
+import { fetchCategories, fetchSources } from "services/settings.services";
+import { createSlice } from "reduxjs/toolkit";
 
 const initialState = {
   loading: false,

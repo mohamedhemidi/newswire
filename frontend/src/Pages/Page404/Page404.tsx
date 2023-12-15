@@ -1,4 +1,4 @@
-import ErrorIcon from "@Assets/icons/error";
+import ErrorIcon from "assets/icons/error";
 
 const Page404 = () => {
   return (

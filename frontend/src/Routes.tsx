@@ -1,15 +1,15 @@
 import { lazy, Suspense } from "react";
-import PrivateRoutes from "@Utils/PrivateRoutes";
+import PrivateRoutes from "utils/PrivateRoutes";
 import { Route, Routes as Switch } from "react-router-dom";
-import { Loader } from "@Components/Loader";
+import { Loader } from "components/Loader";
 
-const Home = lazy(() => import("@Pages/Home/Home"));
-const Article = lazy(() => import("@Pages/Article/Article"));
-const Login = lazy(() => import("@Pages/Login/Login"));
-const Page404 = lazy(() => import("@Pages/Page404/Page404"));
-const Settings = lazy(() => import("@Pages/Settings/Settings"));
-const Signup = lazy(() => import("@Pages/Signup/Signup"));
-const Layout = lazy(() => import("./Layouts/Layout"));
+const Home = lazy(() => import("pages/Home/Home"));
+const Article = lazy(() => import("pages/Article/Article"));
+const Login = lazy(() => import("pages/Login/Login"));
+const Page404 = lazy(() => import("pages/Page404/Page404"));
+const Settings = lazy(() => import("pages/Settings/Settings"));
+const Signup = lazy(() => import("pages/Signup/Signup"));
+const Layout = lazy(() => import("./layouts/Layout"));
 
 const Routes = () => {
   return (

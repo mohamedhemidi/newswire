@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "@Utils/ReduxHooks";
+import { useAppDispatch, useAppSelector } from "utils/ReduxHooks";
 import Routes from "./Routes";
-import { userProfile } from "@Services/users.services";
+import { userProfile } from "services/users.services";
 
 function App() {
   const dispatch = useAppDispatch();

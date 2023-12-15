@@ -1,4 +1,4 @@
-import { fetchCategories, fetchSources } from "@Services/settings.services";
+import { fetchCategories, fetchSources } from "services/settings.services";
 import { useEffect, useState } from "react";
 import { transformDataToSelect } from "./DataHelper";
 import { useAppDispatch } from "./ReduxHooks";

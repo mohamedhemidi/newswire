@@ -1,5 +1,5 @@
-import { userLogin, userProfile, userSignup } from "@Services/users.services";
-import { createSlice } from "@reduxjs/toolkit";
+import { userLogin, userProfile, userSignup } from "services/users.services";
+import { createSlice } from "reduxjs/toolkit";
 
 
 const initialState = {

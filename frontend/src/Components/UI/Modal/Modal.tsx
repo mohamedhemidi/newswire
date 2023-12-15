@@ -1,6 +1,6 @@
 import { Button } from "@mohamedhemidi/vault-ui";
 import styles from "./styles.module.css";
-import CloseIcon from "@Assets/icons/close";
+import CloseIcon from "assets/icons/close";
 
 type Props = {
   children: React.ReactNode;

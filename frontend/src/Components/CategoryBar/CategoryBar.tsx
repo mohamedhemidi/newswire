@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useAppSelector } from "@Utils/ReduxHooks";
+import { useAppSelector } from "utils/ReduxHooks";
 import styles from "./styles.module.css";
 
 const CategoryBar = ({ onCategoryClick }: any) => {

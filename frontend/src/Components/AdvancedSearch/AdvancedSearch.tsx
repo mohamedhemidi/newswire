@@ -1,13 +1,13 @@
-import { Modal } from "@Components/UI/Modal";
+import { Modal } from "components/UI/Modal";
 import styles from "./styles.module.css";
-import { closeSearchModal } from "@Reducers/UIReducer";
-import { useAppDispatch, useAppSelector } from "@Utils/ReduxHooks";
-import { MultiSelect } from "@Components/UI/Select";
-import useGetFilters from "@Utils/useGetFilters";
+import { closeSearchModal } from "reducers/UIReducer";
+import { useAppDispatch, useAppSelector } from "utils/ReduxHooks";
+import { MultiSelect } from "components/UI/Select";
+import useGetFilters from "utils/useGetFilters";
 import { useState } from "react";
-import { setSearch } from "@Reducers/SearchReducer";
+import { setSearch } from "reducers/SearchReducer";
 import { TextField } from "@mohamedhemidi/vault-ui";
-import useTransformSelection from "@Utils/useTransformSelection";
+import useTransformSelection from "utils/useTransformSelection";
 import { useNavigate } from "react-router-dom";
 
 const AdvancedSearch = () => {

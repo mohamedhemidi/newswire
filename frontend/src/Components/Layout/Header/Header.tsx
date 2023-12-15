@@ -1,21 +1,21 @@
 import { Button } from "@mohamedhemidi/vault-ui";
 import styles from "./styles.module.css";
-import HomeIcon from "@Assets/icons/home";
-import { ThemeToggle } from "@Components/UI/ThemeToggle";
-import MenuIcon from "@Assets/icons/menu";
-import { Search } from "@Components/Search";
+import HomeIcon from "assets/icons/home";
+import { ThemeToggle } from "components/UI/ThemeToggle";
+import MenuIcon from "assets/icons/menu";
+import { Search } from "components/Search";
 import { useState } from "react";
-import FilterIcon from "@Assets/icons/filter";
-import CloseIcon from "@Assets/icons/close";
+import FilterIcon from "assets/icons/filter";
+import CloseIcon from "assets/icons/close";
 import { Link, useNavigate } from "react-router-dom";
-import LoginIcon from "@Assets/icons/login";
-import SignupIcon from "@Assets/icons/signup";
-import { checkAuth, logout } from "@Utils/AuthHelper";
-import SettingsIcon from "@Assets/icons/settings";
-import LogoutIcon from "@Assets/icons/logout";
-import { AdvancedSearch } from "@Components/AdvancedSearch";
-import { openSearchModal } from "@Reducers/UIReducer";
-import { useAppDispatch } from "@Utils/ReduxHooks";
+import LoginIcon from "assets/icons/login";
+import SignupIcon from "assets/icons/signup";
+import { checkAuth, logout } from "utils/AuthHelper";
+import SettingsIcon from "assets/icons/settings";
+import LogoutIcon from "assets/icons/logout";
+import AdvancedSearch from "components/AdvancedSearch";
+import { openSearchModal } from "reducers/UIReducer";
+import { useAppDispatch } from "utils/ReduxHooks";
 
 const Header = () => {
   const dispatch = useAppDispatch();

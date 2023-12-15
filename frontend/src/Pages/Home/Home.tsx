@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
-import { Card } from "@Components/Card";
-import { CategoryBar } from "@Components/CategoryBar";
-import { SectionHeader } from "@Components/SectionHeader";
-import { fetchNews } from "@Services/index";
-import { useAppDispatch, useAppSelector } from "@Utils/ReduxHooks";
-import { Loader } from "@Components/Loader";
-import { NewsT } from "src/Types/News";
-import { ProfileCard } from "@Components/ProfileCard";
-import { checkAuth } from "@Utils/AuthHelper";
+import { Card } from "components/Card";
+import { CategoryBar } from "components/CategoryBar";
+import { SectionHeader } from "components/SectionHeader";
+import { fetchNews } from "services/index";
+import { useAppDispatch, useAppSelector } from "utils/ReduxHooks";
+import { Loader } from "components/Loader";
+import { NewsT } from "types/News";
+import { ProfileCard } from "components/ProfileCard";
+import { checkAuth } from "utils/AuthHelper";
 import { Button } from "@mohamedhemidi/vault-ui";
 
 const Home = () => {

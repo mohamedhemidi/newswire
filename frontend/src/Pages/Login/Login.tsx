@@ -1,9 +1,9 @@
 import { Button, TextField } from "@mohamedhemidi/vault-ui";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "@Utils/ReduxHooks";
-import { userLogin, userProfile } from "@Services/users.services";
-import { checkAuth } from "@Utils/AuthHelper";
+import { useAppDispatch } from "utils/ReduxHooks";
+import { userLogin, userProfile } from "services/users.services";
+import { checkAuth } from "utils/AuthHelper";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 

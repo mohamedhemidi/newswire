@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import { Button } from "@mohamedhemidi/vault-ui";
 import styles from "./styles.module.css";
-import MagnifierIcon from "@Assets/icons/magnifier";
-import { useAppDispatch } from "@Utils/ReduxHooks";
-import { setSearch } from "@Reducers/SearchReducer";
+import MagnifierIcon from "assets/icons/magnifier";
+import { useAppDispatch } from "utils/ReduxHooks";
+import { setSearch } from "reducers/SearchReducer";
 
 const Search = () => {
   const dispatch = useAppDispatch();

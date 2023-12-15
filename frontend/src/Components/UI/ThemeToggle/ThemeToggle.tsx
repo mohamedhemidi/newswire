@@ -1,8 +1,8 @@
-import MoonIcon from "@Assets/icons/moon";
-import SunIcon from "@Assets/icons/sun";
-import { useAppDispatch, useAppSelector } from "@Utils/ReduxHooks";
+import MoonIcon from "assets/icons/moon";
+import SunIcon from "assets/icons/sun";
+import { useAppDispatch, useAppSelector } from "utils/ReduxHooks";
 import styles from "./styles.module.css";
-import { toggleTheme } from "@Reducers/UIReducer";
+import { toggleTheme } from "reducers/UIReducer";
 
 const ThemeToggle = () => {
   const dispatch = useAppDispatch();

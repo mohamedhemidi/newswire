@@ -1,12 +1,12 @@
-import { MultiSelect } from "@Components/UI/Select";
+import { MultiSelect } from "components/UI/Select";
 import styles from "./styles.module.css";
 import { useState } from "react";
-import { useAppDispatch } from "@Utils/ReduxHooks";
-import { updateSettings } from "@Services/settings.services";
+import { useAppDispatch } from "utils/ReduxHooks";
+import { updateSettings } from "services/settings.services";
 import { Button } from "@mohamedhemidi/vault-ui";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import useGetFilters from "@Utils/useGetFilters";
+import useGetFilters from "utils/useGetFilters";
 
 const Settings = () => {
   const dispatch = useAppDispatch();

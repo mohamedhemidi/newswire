@@ -1,8 +1,8 @@
-import ShareIcon from "@Assets/icons/share";
+import ShareIcon from "assets/icons/share";
 import styles from "./styles.module.css";
 import moment from "moment";
-import { NewsT } from "src/Types/News";
-import ImagePlaceholder from "@Assets/images/no_image_placeholder.png";
+import { NewsT } from "types/News";
+import ImagePlaceholder from "assets/images/no_image_placeholder.png";
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from "@mohamedhemidi/vault-ui";
 
