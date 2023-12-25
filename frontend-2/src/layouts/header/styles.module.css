@@ -46,9 +46,6 @@
   }
   #menuClose {
     display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
   }
   .content {
     position: fixed;
@@ -57,7 +54,7 @@
     height: 100%;
     width: 80%;
     padding: 1rem;
-    padding-top: 5rem;
+    padding-top: 1rem;
     background-color: var(--header-bg-color);
     flex-direction: column;
     justify-content: start;

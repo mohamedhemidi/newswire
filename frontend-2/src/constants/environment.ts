@@ -1,14 +1,13 @@
-const ENV: ObjectKey = import.meta.env.VITE_APP_ENV;
-
 const BASE_URL = {
   dev: "http://localhost:8000",
   test: "",
   prod: "",
 };
 
-const API_ENDPOINT = BASE_URL[ENV];
-
+const ENV: ObjectKey = import.meta.env.VITE_APP_ENV || "prod";
 type ObjectKey = keyof typeof BASE_URL;
+
+const API_ENDPOINT = BASE_URL[ENV];
 
 export const PATH = {
   // News

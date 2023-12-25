@@ -12,7 +12,7 @@ import {
 import { ThemeToggle } from "common/components/ThemeToggle";
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -46,27 +46,27 @@ const Header = () => {
           </Button>
         </div>
         <div className={styles.navlink}>
-        <Button
-                icon={<LoginIcon />}
-                variant="ghost"
-                color="neutral"
-                onClick={() => {}}
-              >
-                Login
-              </Button>
+          <Button
+            icon={<LoginIcon />}
+            variant="ghost"
+            color="neutral"
+            onClick={() => {}}
+          >
+            Login
+          </Button>
         </div>
         <div className={styles.navlink}>
-        <Button
-                icon={<SignupIcon />}
-                variant="ghost"
-                color="neutral"
-                onClick={() => {}}
-              >
-                Signup
-              </Button>
+          <Button
+            icon={<SignupIcon />}
+            variant="ghost"
+            color="neutral"
+            onClick={() => {}}
+          >
+            Signup
+          </Button>
         </div>
         <div className={styles.navlink}>
-        <Button
+          <Button
             icon={<FilterIcon />}
             onClick={() => {}}
             variant="ghost"
@@ -75,6 +75,7 @@ const Header = () => {
             Advanced Search
           </Button>
         </div>
+        <ThemeToggle />
       </nav>
       <div className={styles.toggleMenu}>
         <Button
@@ -85,7 +86,6 @@ const Header = () => {
           color="neutral"
           onClick={toggleMenu}
         ></Button>
-        <ThemeToggle />
       </div>
     </header>
   );

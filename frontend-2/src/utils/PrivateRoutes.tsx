@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { checkAuth } from "./AuthHelper";
+import { checkAuth } from "modules/authentication/utils/authHelper";
 
 const PrivateRoutes = () => {
   const authenticated = checkAuth();

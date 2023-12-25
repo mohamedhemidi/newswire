@@ -1,9 +1,14 @@
 import { combineReducers } from "redux";
-import UIReducer from "./UIReducer"
+import UIReducer from "./UIReducer";
+import LoginReducer from "./loginReducer";
+import SignupReducer from "./signupReducer";
+import UserReducer from "./userReducer";
 
 const reducers = combineReducers({
-    UI: UIReducer
-})
+  UI: UIReducer,
+  login: LoginReducer,
+  signup: SignupReducer,
+  user: UserReducer,
+});
 
-
-export default reducers
+export default reducers;

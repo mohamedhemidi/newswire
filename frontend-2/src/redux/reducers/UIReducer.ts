@@ -2,7 +2,6 @@ import actions from "redux/actions";
 
 const initialState = {
   theme: "light",
-  search_modal: false,
 };
 
 const UIReducer = (state = initialState, action: UIActionProps) => {

@@ -18,6 +18,7 @@
     "paths": {
       "assets/*": ["src/assets/*"],
       "common/*": ["src/common/*"],
+      "modules/*": ["src/modules/*"],
       "utils/*": ["src/utils/*"],
       "services/*": ["src/services/*"],
       "constants/*": ["src/constants/*"],
@@ -27,7 +28,7 @@
       "hooks/*": ["src/hooks/*"],
       // Redux
       "redux/actions": ["src/redux/actions/"],
-      "redux/reducers": ["src/redux/reducers/"],
+      "redux/reducers/*": ["src/redux/reducers/*"],
     },
 
     /* Linting */
