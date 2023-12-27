@@ -1,5 +1,5 @@
 import { useAppDispatch } from "hooks/useAppDispatch";
-import loginUser from "modules/authentication/services/login.services";
+import LoginUser from "modules/authentication/services/login.services";
 import React, { useEffect } from "react";
 
 const credentials = {
@@ -10,8 +10,9 @@ const Home = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(loginUser(credentials));
+    dispatch(LoginUser(credentials));
   }, []);
+
   return <div>Home</div>;
 };
 

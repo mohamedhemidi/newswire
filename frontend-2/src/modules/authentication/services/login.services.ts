@@ -4,7 +4,7 @@ import HTTP from "utils/httpClient";
 import actions from "redux/actions";
 import { Dispatch } from "redux";
 
-const loginUser = (credentials: Pick<TCredentials, "email" | "password">) => {
+const LoginUser = (credentials: Pick<TCredentials, "email" | "password">) => {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({
@@ -12,11 +12,10 @@ const loginUser = (credentials: Pick<TCredentials, "email" | "password">) => {
         payload: credentials,
       });
       const response = await HTTP.POST(PATH.userLogin, credentials);
-      const data = await response.json();
-      if (data) {
+      if (response) {
         dispatch({
           type: actions.LOGIN_USER_SUCCESS,
-          payload: data,
+          payload: response,
         });
       }
     } catch (error) {
@@ -28,4 +27,4 @@ const loginUser = (credentials: Pick<TCredentials, "email" | "password">) => {
   };
 };
 
-export default loginUser;
+export default LoginUser;

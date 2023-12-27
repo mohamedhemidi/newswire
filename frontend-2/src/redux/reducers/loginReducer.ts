@@ -14,7 +14,7 @@ const LoginReducer = (state = {}, action: LoginActionProps) => {
     case actions.LOGIN_USER_ERROR:
       return {
         ...state,
-        data: action.payload,
+        error: action.payload,
         loading: false,
         isLoggedIn: false,
       };
