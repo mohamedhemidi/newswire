@@ -5,12 +5,14 @@ const LoginReducer = (state = {}, action: LoginActionProps) => {
     case actions.LOGIN_USER:
       return { ...state, loading: true, isLoggedIn: false };
     case actions.LOGIN_USER_SUCCESS:
+      localStorage.setItem("auth_token", action.payload.data.token);
       return {
         ...state,
         data: action.payload,
         loading: false,
         isLoggedIn: true,
       };
+
     case actions.LOGIN_USER_ERROR:
       return {
         ...state,
@@ -28,6 +30,17 @@ const LoginReducer = (state = {}, action: LoginActionProps) => {
 export default LoginReducer;
 
 export type LoginActionProps = {
-  payload: unknown;
+  payload: {
+    status: string;
+    message: string;
+    data: {
+      token: string;
+      user: {
+        id: number;
+        name: string;
+        email: string;
+      };
+    };
+  };
   type: string;
 };

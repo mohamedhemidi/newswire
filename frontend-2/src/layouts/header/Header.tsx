@@ -1,21 +1,37 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "lib/vault-ui";
 import styles from "./styles.module.css";
-import {
-  CloseIcon,
-  FilterIcon,
-  HomeIcon,
-  LoginIcon,
-  MenuIcon,
-  SignupIcon,
-} from "assets/icons";
+import { CloseIcon, MenuIcon } from "assets/icons";
 import { ThemeToggle } from "common/components/ThemeToggle";
+import { useNavigate } from "react-router-dom";
+import { NavLinks } from "./Links";
+import { checkAuth, logout } from "modules/authentication/utils/authHelper";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const authenticated = checkAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const links = NavLinks.filter((link) => link.auth == authenticated);
+
+  const handleOnClick = (action: string) => {
+    switch (action) {
+      case "logout":
+        console.log(action);
+        logout(() => {
+          navigate(0);
+        });
+        break;
+      case "notification":
+        break;
+
+      default:
+        break;
+    }
   };
 
   const navStyles = `
@@ -35,46 +51,26 @@ const Header = () => {
           color="neutral"
           onClick={toggleMenu}
         ></Button>
-        <div className={styles.navlink}>
-          <Button
-            icon={<HomeIcon />}
-            variant="ghost"
-            color="neutral"
-            onClick={() => {}}
-          >
-            Home
-          </Button>
-        </div>
-        <div className={styles.navlink}>
-          <Button
-            icon={<LoginIcon />}
-            variant="ghost"
-            color="neutral"
-            onClick={() => {}}
-          >
-            Login
-          </Button>
-        </div>
-        <div className={styles.navlink}>
-          <Button
-            icon={<SignupIcon />}
-            variant="ghost"
-            color="neutral"
-            onClick={() => {}}
-          >
-            Signup
-          </Button>
-        </div>
-        <div className={styles.navlink}>
-          <Button
-            icon={<FilterIcon />}
-            onClick={() => {}}
-            variant="ghost"
-            color="neutral"
-          >
-            Advanced Search
-          </Button>
-        </div>
+        {links.map((li) => {
+          return (
+            <div key={li.title} className={styles.navlink}>
+              <Button
+                icon={li.icon}
+                variant="ghost"
+                color="neutral"
+                onClick={() => {
+                  if (li.path) {
+                    return navigate(li.path);
+                  } else {
+                    return handleOnClick(li.action as string);
+                  }
+                }}
+              >
+                {li.title}
+              </Button>
+            </div>
+          );
+        })}
         <ThemeToggle />
       </nav>
       <div className={styles.toggleMenu}>

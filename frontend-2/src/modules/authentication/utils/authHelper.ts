@@ -1,8 +1,8 @@
 export const checkAuth = () => {
-  return localStorage.getItem("token") ? true : false;
+  return localStorage.getItem("auth_token") ? true : false;
 };
 
 export const logout = (callback: () => void) => {
-  localStorage.removeItem("token");
+  localStorage.removeItem("auth_token");
   callback();
 };
