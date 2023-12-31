@@ -25,11 +25,12 @@ export default class HTTP {
     const cache = await caches.open("cache");
     const cachedResponse = await cache.match(url);
     if (cachedResponse) return cachedResponse.json();
-    
+
     try {
       const response = await fetch(url, {
         signal,
         headers: this.HEADERS(headers),
+        cache: 'no-store'
       });
       if (!response.ok) throw response;
 

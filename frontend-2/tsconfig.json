@@ -28,7 +28,7 @@
       "hooks/*": ["src/hooks/*"],
       // Redux
       "redux/actions": ["src/redux/actions/"],
-      "redux/reducers/*": ["src/redux/reducers/*"],
+      "redux/reducers": ["src/redux/reducers/"],
     },
 
     /* Linting */

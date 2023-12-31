@@ -1,6 +1,16 @@
 import actions from "redux/actions";
 
-const LoginReducer = (state = {}, action: LoginActionProps) => {
+type StateT = {
+  isLoggedIn: boolean;
+  loading: boolean;
+  error: Pick<LoginActionProps, "payload">;
+  data: Pick<LoginActionProps, "payload">;
+};
+
+const LoginReducer = (
+  state: StateT | object = {},
+  action: LoginActionProps
+) => {
   switch (action.type) {
     case actions.LOGIN_USER:
       return { ...state, loading: true, isLoggedIn: false };
@@ -12,7 +22,6 @@ const LoginReducer = (state = {}, action: LoginActionProps) => {
         loading: false,
         isLoggedIn: true,
       };
-
     case actions.LOGIN_USER_ERROR:
       return {
         ...state,

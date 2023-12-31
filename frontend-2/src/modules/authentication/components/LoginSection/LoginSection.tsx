@@ -10,17 +10,18 @@ const LoginSection = () => {
     email: "",
     password: "",
   });
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // console.log("Logging in with =>", loginData);
-    dispatch(LoginUser(loginData));
-  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     setLoginData((prev) => {
       return { ...prev, [name]: value };
     });
+  };
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(LoginUser(loginData));
   };
 
   return (
