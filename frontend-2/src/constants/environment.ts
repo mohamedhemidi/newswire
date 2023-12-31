@@ -1,7 +1,7 @@
 const BASE_URL = {
   dev: "http://localhost:8000",
-  test: "",
-  prod: "",
+  //test: "",
+  //prod: "",
 };
 
 const ENV: ObjectKey = import.meta.env.VITE_APP_ENV || "prod";

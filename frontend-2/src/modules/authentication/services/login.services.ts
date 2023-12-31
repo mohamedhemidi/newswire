@@ -5,13 +5,16 @@ import actions from "redux/actions";
 import { Dispatch } from "redux";
 
 const LoginUser = (credentials: Pick<TCredentials, "email" | "password">) => {
+  
+  const http = new HTTP();
+
   return async (dispatch: Dispatch) => {
     try {
       dispatch({
         type: actions.LOGIN_USER,
         payload: credentials,
       });
-      const response = await HTTP.POST(PATH.userLogin, credentials);
+      const response = await http.POST(PATH.userLogin, credentials);
       if (response) {
         dispatch({
           type: actions.LOGIN_USER_SUCCESS,

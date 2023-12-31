@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <header className={styles.container}>
       <div className={styles.logo}>
-        <h2>NewsWire</h2>
+        <h2>{import.meta.env.VITE_APP_NAME}</h2>
       </div>
       <nav className={`${styles.content} ${navStyles}`}>
         <Button
