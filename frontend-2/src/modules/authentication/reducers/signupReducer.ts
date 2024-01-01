@@ -1,12 +1,16 @@
 import actions from "redux/actions";
 
-const initialState = {
-  loading: false,
-  error: null,
-  data: {},
+type StateT = {
+  loading: boolean;
+  success?: boolean;
+  error: object;
+  data: object;
 };
 
-const SignupReducer = (state = initialState, action: SignupActionProps) => {
+const SignupReducer = (
+  state: StateT | object = {},
+  action: SignupActionProps
+) => {
   switch (action.type) {
     case actions.SIGNUP_USER:
       return {
@@ -17,6 +21,7 @@ const SignupReducer = (state = initialState, action: SignupActionProps) => {
       return {
         ...state,
         data: action.payload,
+        success: true,
         loading: false,
       };
     case actions.SIGNUP_USER_ERROR:
@@ -24,6 +29,7 @@ const SignupReducer = (state = initialState, action: SignupActionProps) => {
         ...state,
         error: action.payload,
         loading: false,
+        success: false,
       };
     default:
       return state;

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, TextField } from "lib/vault-ui";
 import { useState } from "react";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import styles from "./styles.module.css";
 import SignupUser from "modules/authentication/services/signup.services";
+import { useAppSelector } from "hooks/useAppSelector";
+import { useNavigate } from "react-router-dom";
 
 const SignupSection = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { success } = useAppSelector((state) => state.signup) as {
+    success: boolean;
+  };
 
   const [userData, setUserData] = useState({
     name: "",
@@ -28,6 +34,12 @@ const SignupSection = () => {
     console.log("Signing up with ", userData);
     dispatch(SignupUser(userData));
   };
+
+  useEffect(() => {
+    if (success) {
+      return navigate("/login");
+    }
+  }, [success, navigate]);
 
   return (
     <div className={styles.signupContainer}>
