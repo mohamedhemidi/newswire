@@ -1,13 +1,13 @@
-const BASE_URL = {
+const API_BASE_URL = {
   dev: "http://localhost:8000",
   //test: "",
   //prod: "",
 };
 
 const ENV: ObjectKey = import.meta.env.VITE_APP_ENV || "prod";
-type ObjectKey = keyof typeof BASE_URL;
+type ObjectKey = keyof typeof API_BASE_URL;
 
-const API_ENDPOINT = BASE_URL[ENV];
+const API_ENDPOINT = API_BASE_URL[ENV];
 
 export const PATH = {
   // News
