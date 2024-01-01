@@ -1,0 +1,27 @@
+.wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #3498db;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition: background-color 0.3s;
+}
+.wrapper:hover {
+  background-color: #2980b9;
+}
+
+.icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon > svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}

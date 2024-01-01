@@ -1,0 +1,15 @@
+export { default as CloseIcon } from "./close";
+export { default as ErrorIcon } from "./error";
+export { default as FilterIcon } from "./filter";
+export { default as HappyIcon } from "./happy";
+export { default as HomeIcon } from "./home";
+export { default as LoginIcon } from "./login";
+export { default as LogoutIcon } from "./logout";
+export { default as MagnifierIcon } from "./magnifier";
+export { default as MenuIcon } from "./menu";
+export { default as MoonIcon } from "./moon";
+export { default as NotificationIcon } from "./notification";
+export { default as SettingsIcon } from "./settings";
+export { default as ShareIcon } from "./share";
+export { default as SignupIcon } from "./signup";
+export { default as SunIcon } from "./sun";
