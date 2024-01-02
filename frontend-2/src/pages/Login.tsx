@@ -11,7 +11,7 @@ const Login = () => {
     isLoggedIn: boolean;
   };
   useEffect(() => {
-    if (authenticated || isLoggedIn) {
+    if (authenticated.loggedIn || isLoggedIn) {
       return navigate("/");
     }
   }, [authenticated, isLoggedIn, navigate]);

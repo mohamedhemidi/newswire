@@ -18,23 +18,24 @@ export default class HTTP {
   */
   async GET(
     url: string,
-    signal?: AbortSignal,
+    signal?: AbortSignal | null,
     headers?: Record<string, string>
   ) {
     // Caching mechanism:
     const cache = await caches.open("cache");
-    const cachedResponse = await cache.match(url);
+    const cachedKey = `${url}:${JSON.stringify(headers)}`;
+    const cachedResponse = await cache.match(cachedKey);
     if (cachedResponse) return cachedResponse.json();
 
     try {
       const response = await fetch(url, {
         signal,
         headers: this.HEADERS(headers),
-        cache: 'no-store'
+        cache: "no-store",
       });
       if (!response.ok) throw response;
 
-      await cache.put(url, response.clone());
+      await cache.put(cachedKey, response.clone());
       const data = await response.json();
 
       return data;
