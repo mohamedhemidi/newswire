@@ -1,4 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@font-face {
+  font-family: 'Poppins';
+  src: url(./assets/fonts/Poppins/Poppins-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url(./assets/fonts/Poppins/Poppins-Bold.ttf);
+  font-weight: bold;
+  font-style: bold;
+}
 
 :root {
   --primary: #4778b3;

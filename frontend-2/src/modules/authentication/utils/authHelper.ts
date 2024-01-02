@@ -1,8 +1,20 @@
+import { AUTH_TOKEN } from "constants/auth";
+
 export const checkAuth = () => {
-  return localStorage.getItem("auth_token") ? true : false;
+  if (localStorage.getItem(AUTH_TOKEN)) {
+    return {
+      loggedIn: true,
+      token: localStorage.getItem(AUTH_TOKEN),
+    };
+  } else {
+    return {
+      loggedIn: false,
+      token: "",
+    };
+  }
 };
 
 export const logout = (callback: () => void) => {
-  localStorage.removeItem("auth_token");
+  localStorage.removeItem(AUTH_TOKEN);
   callback();
 };

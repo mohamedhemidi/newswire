@@ -1,9 +1,8 @@
 import actions from "redux/actions";
 import { Dispatch } from "redux";
-import { UIActionProps } from "redux/reducers/UIReducer";
 
 export const toggleTheme = () => {
-  return (dispatch: Dispatch<UIActionProps>) => {
+  return (dispatch: Dispatch) => {
     dispatch({
       type: actions.TOGGLE_THEME
     });

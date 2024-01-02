@@ -16,7 +16,7 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const links = NavLinks.filter((link) => link.auth == authenticated);
+  const links = NavLinks.filter((link) => link.auth == authenticated.loggedIn);
 
   const handleOnClick = (action: string) => {
     switch (action) {
