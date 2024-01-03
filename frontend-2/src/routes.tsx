@@ -4,10 +4,11 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./layouts/layout";
 import { Loader } from "./common/components/Loader";
 import PrivateRoutes from "./utils/PrivateRoutes";
-import Login from "pages/Login";
-import Signup from "pages/Signup";
 
 const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
+const Page404 = lazy(() => import("./pages/404"));
 
 const RoutesList = () => {
   return (
@@ -18,6 +19,7 @@ const RoutesList = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route element={<PrivateRoutes />}>{/* // Pivate Routes */}</Route>
+          <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
     </Suspense>
