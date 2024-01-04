@@ -36,6 +36,7 @@
   --secondary-color: #cdcdcd;
   --bg-color: #010101;
   --header-bg-color: #171717;
+  --sidebar-bg-color: #171717;
   --card-bg-color: #171717;
 }
 [data-theme="light"] {
@@ -43,6 +44,7 @@
   --secondary-color: #7C7C7C;
   --bg-color: #F7F8F9;
   --header-bg-color: #FFFFFF;
+  --sidebar-bg-color: #FFFFFF;
   --card-bg-color: #FFFFFF;
 }
 

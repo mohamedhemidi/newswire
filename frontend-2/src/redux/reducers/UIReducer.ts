@@ -2,6 +2,7 @@ import actions from "redux/actions";
 
 const initialState = {
   theme: "light",
+  sidebar_collapsed: false,
 };
 
 const UIReducer = (state = initialState, action: UIActionProps) => {
@@ -10,6 +11,11 @@ const UIReducer = (state = initialState, action: UIActionProps) => {
       return {
         ...state,
         theme: (state.theme = state.theme === "light" ? "dark" : "light"),
+      };
+    case actions.TOGGLE_SIDEBAR:
+      return {
+        ...state,
+        sidebar_collapsed: !state.sidebar_collapsed,
       };
     default:
       return state;
