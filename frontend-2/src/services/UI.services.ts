@@ -8,3 +8,10 @@ export const toggleTheme = () => {
     });
   };
 };
+export const toggleSidebar = () => {
+  return (dispatch: Dispatch) => {
+    dispatch({
+      type: actions.TOGGLE_SIDEBAR
+    });
+  };
+};

@@ -1,10 +1,15 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Layout from "./layouts/layout";
 import { Loader } from "./common/components/Loader";
 import PrivateRoutes from "./utils/PrivateRoutes";
 
+/* 
+*/
+const Layout = lazy(() => import("./layouts/layouts/layout_one"));
+// const Layout = lazy(() => import("./layouts/layouts/layout_two"));
+/*
+*/
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
