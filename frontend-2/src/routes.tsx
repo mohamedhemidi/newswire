@@ -6,8 +6,8 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 
 /* 
 */
-const Layout = lazy(() => import("./layouts/layouts/layout_one"));
-// const Layout = lazy(() => import("./layouts/layouts/layout_two"));
+const Layout = lazy(() => import("./layouts/layouts/layout_1"));
+// const Layout = lazy(() => import("./layouts/layouts/layout_2"));
 /*
 */
 const Home = lazy(() => import("./pages/Home"));
