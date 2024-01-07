@@ -1,3 +1,4 @@
+import { AUTH_TOKEN } from "constants/auth";
 import actions from "redux/actions";
 
 type StateT = {
@@ -15,7 +16,7 @@ const LoginReducer = (
     case actions.LOGIN_USER:
       return { ...state, loading: true, isLoggedIn: false };
     case actions.LOGIN_USER_SUCCESS:
-      localStorage.setItem("auth_token", action.payload.data.token);
+      localStorage.setItem(AUTH_TOKEN, action.payload.data.token);
       return {
         ...state,
         data: action.payload,
