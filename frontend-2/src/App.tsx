@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import RoutesList from "./routes";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useAppSelector } from "hooks/useAppSelector";
 import UserProfile from "modules/authentication/services/profile.services";
 import { useAppDispatch } from "hooks/useAppDispatch";
@@ -10,13 +10,16 @@ function App() {
   const dispatch = useAppDispatch();
   const { theme } = useAppSelector((state) => state.UI);
   const auth = checkAuth();
-
+  const shouldRun = useRef(true);
   useEffect(() => {
     document.querySelector("body")?.setAttribute("data-theme", theme);
   }, [theme]);
 
   useEffect(() => {
-    if (auth.loggedIn && auth.token) dispatch(UserProfile(auth.token));
+    if (shouldRun.current) {
+      shouldRun.current = false;
+      if (auth.loggedIn && auth.token) dispatch(UserProfile(auth.token));
+    }
   }, [auth, dispatch]);
   return (
     <>

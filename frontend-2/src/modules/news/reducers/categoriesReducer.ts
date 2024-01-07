@@ -1,6 +1,10 @@
 import actions from "redux/actions";
 
-const CategoriesReducer = (state = {}, action: CategoriesActionProps) => {
+
+const CategoriesReducer = (
+  state = {},
+  action: CategoriesActionProps
+) => {
   switch (action.type) {
     case actions.GET_CATEGORIES:
       return { ...state, loading: true };
