@@ -9,14 +9,12 @@ const SettingsReducer = (state = {}, action: SettingsActionProps) => {
         ...state,
         data: action.payload,
         loading: false,
-        updated: true,
       };
     case actions.UPDATE_SETTINGS_ERROR:
       return {
         ...state,
         data: action.payload,
         loading: false,
-        updated: false,
       };
 
     default:
