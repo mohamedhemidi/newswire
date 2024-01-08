@@ -1,18 +1,14 @@
 import { useAppDispatch } from "hooks/useAppDispatch";
 import styles from "./styles.module.css";
-import {  useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import useGetFilters from "modules/settings/hooks/useGetFilters";
 import { MultiSelect, Button } from "lib/vault-ui";
 import UpdateSettings from "modules/settings/services/settings.services";
-import { useAppSelector } from "hooks/useAppSelector";
+
 const SettingsSection = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const { updated } = useAppSelector((state) => state.settings) as {
-    updated: boolean;
-  };
 
   const settings = useGetFilters();
 
@@ -43,13 +39,8 @@ const SettingsSection = () => {
       return data.sources.push(i.value);
     });
 
-    dispatch(UpdateSettings(data));
+    dispatch(UpdateSettings(data, () => navigate("/") ));
   };
-  useEffect(() => {
-    if (updated) {
-      return navigate("/");
-    }
-  }, [updated]);
 
   return (
     <div className={styles.container}>

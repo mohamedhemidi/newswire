@@ -4,7 +4,7 @@ import actions from "redux/actions";
 import { Dispatch } from "redux";
 import { AUTH_TOKEN } from "constants/auth";
 
-const UpdateSettings = (data: unknown) => {
+const UpdateSettings = (data: unknown, cb: () => void) => {
   const http = new HTTP();
 
   const token = localStorage.getItem(AUTH_TOKEN);
@@ -23,6 +23,7 @@ const UpdateSettings = (data: unknown) => {
           type: actions.UPDATE_SETTINGS_SUCCESS,
           payload: response,
         });
+        cb();
       }
     } catch (error) {
       dispatch({
