@@ -35,11 +35,16 @@ const Header = () => {
   };
 
   const navStyles = `
-   ${menuOpen ? styles["active"] : ""} 
+   ${menuOpen ? styles["active"] : ""}
   `;
   return (
     <header className={styles.container}>
-      <div className={styles.logo}>
+      <div
+        className={styles.logo}
+        onClick={() => {
+          return navigate("/");
+        }}
+      >
         <h2>{import.meta.env.VITE_APP_NAME}</h2>
       </div>
       <nav className={`${styles.content} ${navStyles}`}>
