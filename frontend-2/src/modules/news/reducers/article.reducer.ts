@@ -1,17 +1,17 @@
 import actions from "redux/actions";
 
-const NewsReducer = (state = {}, action: NewsActionProps) => {
+const ArticleReducer = (state = {}, action: ArticleActionProps) => {
   switch (action.type) {
-    case actions.GET_NEWS:
+    case actions.GET_ARTICLE:
       return { ...state, loading: true };
-    case actions.GET_NEWS_SUCCESS:
+    case actions.GET_ARTICLE_SUCCESS:
       return {
         ...state,
         data: action.payload,
         loading: false,
         error: "",
       };
-    case actions.GET_NEWS_ERROR:
+    case actions.GET_ARTICLE_ERROR:
       return {
         ...state,
         data: "",
@@ -24,9 +24,9 @@ const NewsReducer = (state = {}, action: NewsActionProps) => {
   }
 };
 
-export default NewsReducer;
+export default ArticleReducer;
 
-export type NewsActionProps = {
+export type ArticleActionProps = {
   type: string;
   payload: unknown;
 };

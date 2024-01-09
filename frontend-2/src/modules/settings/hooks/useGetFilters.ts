@@ -12,10 +12,10 @@ type Source = {
   [key: string]: string;
 };
 
-interface SettingsT {
+type SettingsT = {
   categories: Category[];
   sources: Source[];
-}
+};
 const useGetFilters = () => {
   const dispatch = useAppDispatch();
   const { data: categories } = useAppSelector((state) => state.categories) as {

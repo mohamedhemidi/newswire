@@ -6,6 +6,8 @@ import UserReducer from "modules/authentication/reducers/userReducer";
 
 import CategoriesReducer from "modules/news/reducers/categoriesReducer";
 import SourcesReducer from "modules/news/reducers/sourcesReducer";
+import NewsReducer from "modules/news/reducers/news.reducer";
+import ArticleReducer from "modules/news/reducers/article.reducer";
 
 import SettingsReducer from "modules/settings/reducers/settings.reducer";
 
@@ -13,6 +15,8 @@ const reducers = combineReducers({
   UI: UIReducer,
   login: LoginReducer,
   signup: SignupReducer,
+  news: NewsReducer,
+  article: ArticleReducer,
   categories: CategoriesReducer,
   sources: SourcesReducer,
   settings: SettingsReducer,
