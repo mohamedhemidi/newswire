@@ -6,7 +6,6 @@ import { useEffect, useRef } from "react";
 
 const Home = () => {
   const dispatch = useAppDispatch();
-
   const shouldRun = useRef(true);
 
   useEffect(() => {
@@ -16,6 +15,7 @@ const Home = () => {
       dispatch(GetSources());
     }
   }, [dispatch]);
+
   const query = {
     keyword: "",
     sources: "",
