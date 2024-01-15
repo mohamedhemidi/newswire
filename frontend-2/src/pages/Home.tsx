@@ -1,32 +1,27 @@
 import { useAppDispatch } from "hooks/useAppDispatch";
-import GetCategories from "modules/news/services/categories.services";
+import { useAppSelector } from "hooks/useAppSelector";
+import { HomeSection } from "modules/news/components/HomeSection";
 import GetNews from "modules/news/services/news.services";
-import GetSources from "modules/news/services/sources.services";
 import { useEffect, useRef } from "react";
 
 const Home = () => {
   const dispatch = useAppDispatch();
   const shouldRun = useRef(true);
 
+  const { query } = useAppSelector((state) => state.search);
+
   useEffect(() => {
     if (shouldRun.current) {
       shouldRun.current = false;
-      dispatch(GetCategories());
-      dispatch(GetSources());
+      dispatch(GetNews(query));
     }
-  }, [dispatch]);
+  }, [dispatch, query]);
 
-  const query = {
-    keyword: "",
-    sources: "",
-    categories: "",
-  };
-
-  useEffect(() => {
-    dispatch(GetNews(query));
-  }, []);
-
-  return <div>Home</div>;
+  return (
+    <main className="main-section">
+      <HomeSection />
+    </main>
+  );
 };
 
 export default Home;
