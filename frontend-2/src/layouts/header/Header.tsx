@@ -6,6 +6,7 @@ import { ThemeToggle } from "common/components/ThemeToggle";
 import { useNavigate } from "react-router-dom";
 import { NavLinks } from "./Links";
 import { checkAuth, logout } from "modules/authentication/utils/authHelper";
+import { SearchBox } from "modules/search/components/container/SearchBox";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -78,6 +79,7 @@ const Header = () => {
         })}
         <ThemeToggle />
       </nav>
+      <SearchBox />
       <div className={styles.toggleMenu}>
         <Button
           id={styles.menuOpen}

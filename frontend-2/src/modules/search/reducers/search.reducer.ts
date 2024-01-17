@@ -10,10 +10,12 @@ const initialState = {
 
 const SearchReducer = (state = initialState, action: SearchActionProps) => {
   switch (action.type) {
-    case actions.GET_SEARCH_QUERIES:
-      return { ...state, query: action.payload };
     case actions.UPDATE_SEARCH_QUERIES:
-      return { ...state, query: action.payload };
+      console.log("FROM REDUCER====", action.payload);
+      return {
+        ...state,
+        query: action.payload,
+      };
     default:
       return state;
   }
@@ -23,5 +25,9 @@ export default SearchReducer;
 
 export type SearchActionProps = {
   type: string;
-  payload: unknown;
+  payload: {
+    keyword: string[];
+    sources: string[];
+    categories: string[];
+  };
 };
