@@ -6,7 +6,7 @@ import ImagePlaceholder from "assets/images/no_image_placeholder.png";
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from "lib/vault-ui";
 
-const Card = ({
+const NewsCard = ({
   id,
   title,
   source,
@@ -39,4 +39,4 @@ const Card = ({
     </article>
   );
 };
-export default Card;
+export default NewsCard;

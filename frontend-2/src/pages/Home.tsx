@@ -13,9 +13,11 @@ const Home = () => {
   useEffect(() => {
     if (shouldRun.current) {
       shouldRun.current = false;
-      dispatch(GetNews(query));
+      dispatch(GetNews(query)).then(() => {
+        shouldRun.current = true;
+      });
     }
-  }, [dispatch, query]);
+  }, [query, dispatch]);
 
   return (
     <main className="main-section">
