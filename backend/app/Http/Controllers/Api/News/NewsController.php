@@ -44,9 +44,8 @@ class NewsController extends Controller
 
                 $filteredNews = $query->orderBy('date_published', 'desc')->paginate(25)->appends($request->all());
 
-                return $this->success([
-                    $filteredNews
-                ]);
+                return $this->success($filteredNews);
+                
             } catch (\Throwable $th) {
                 return $this->error('', $th, 500);
             }
