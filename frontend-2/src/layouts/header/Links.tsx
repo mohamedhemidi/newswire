@@ -1,4 +1,12 @@
-import { HomeIcon, LoginIcon, LogoutIcon, NotificationIcon, SettingsIcon, SignupIcon } from "assets/icons";
+import {
+  FilterIcon,
+  HomeIcon,
+  LoginIcon,
+  LogoutIcon,
+  NotificationIcon,
+  SettingsIcon,
+  SignupIcon,
+} from "assets/icons";
 
 export const NavLinks = [
   {
@@ -30,13 +38,24 @@ export const NavLinks = [
     icon: <NotificationIcon />,
     auth: true,
     path: null,
-    action: 'notification'
+    action: "notification",
   },
+
   {
     title: "Logout",
     icon: <LogoutIcon />,
     auth: true,
     path: null,
-    action: 'logout'
+    action: "logout",
+  },
+];
+
+export const constantLinks = [
+  {
+    title: "Advanced Search",
+    icon: <FilterIcon />,
+    auth: false,
+    path: null,
+    action: "advancedSearch",
   },
 ];
