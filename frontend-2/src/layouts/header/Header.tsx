@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 import { CloseIcon, MenuIcon } from "assets/icons";
 import { ThemeToggle } from "common/components/ThemeToggle";
 import { useNavigate } from "react-router-dom";
-import { NavLinks } from "./Links";
+import { NavLinks, constantLinks } from "./Links";
 import { checkAuth, logout } from "modules/authentication/utils/authHelper";
 import { SearchBox } from "modules/search/components/container/SearchBox";
 
@@ -58,6 +58,26 @@ const Header = () => {
           onClick={toggleMenu}
         ></Button>
         {links.map((li) => {
+          return (
+            <div key={li.title} className={styles.navlink}>
+              <Button
+                icon={li.icon}
+                variant="ghost"
+                color="neutral"
+                onClick={() => {
+                  if (li.path) {
+                    return navigate(li.path);
+                  } else {
+                    return handleOnClick(li.action as string);
+                  }
+                }}
+              >
+                {li.title}
+              </Button>
+            </div>
+          );
+        })}
+        {constantLinks.map((li) => {
           return (
             <div key={li.title} className={styles.navlink}>
               <Button
