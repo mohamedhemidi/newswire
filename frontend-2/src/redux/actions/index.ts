@@ -6,6 +6,8 @@ import search_actions from "modules/search/actions";
 export default {
   TOGGLE_THEME: "TOGGLE_THEME",
   TOGGLE_SIDEBAR: "TOGGLE_SIDEBAR",
+  OPEN_MODAL: "OPEN_MODAL",
+  CLOSE_MODAL: "CLOSE_MODAL",
 
   ...auth_actions,
   ...news_actions,

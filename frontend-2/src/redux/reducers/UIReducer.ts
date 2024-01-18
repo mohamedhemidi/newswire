@@ -3,6 +3,7 @@ import actions from "redux/actions";
 const initialState = {
   theme: "light",
   sidebar_collapsed: false,
+  modal_opened: false,
 };
 
 const UIReducer = (state = initialState, action: UIActionProps) => {
@@ -16,6 +17,16 @@ const UIReducer = (state = initialState, action: UIActionProps) => {
       return {
         ...state,
         sidebar_collapsed: !state.sidebar_collapsed,
+      };
+    case actions.OPEN_MODAL:
+      return {
+        ...state,
+        modal_opened: true,
+      };
+    case actions.CLOSE_MODAL:
+      return {
+        ...state,
+        modal_opened: false,
       };
     default:
       return state;
