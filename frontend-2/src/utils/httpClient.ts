@@ -19,13 +19,27 @@ export default class HTTP {
   async GET(
     url: string,
     signal?: AbortSignal | null,
-    headers?: Record<string, string>
+    headers?: Record<string, string>,
+    enableCache = true,
+    cacheName = "cache",
+    cacheTime = 900 // 15 minutes
   ) {
     // Caching mechanism:
-    const cache = await caches.open("cache");
+    const CACHE_NAME = cacheName;
+    const CACHE_TTL = cacheTime;
+    const cache = await caches.open(CACHE_NAME);
     const cachedKey = `${url}:${JSON.stringify(headers)}`;
     const cachedResponse = await cache.match(cachedKey);
-    if (cachedResponse) return cachedResponse.json();
+
+    if (enableCache && cachedResponse) {
+      const cachedData = await cachedResponse.json();
+      const currentTime = Date.now();
+      const timeDifference = (currentTime - cachedData.timestamp) / 1000;
+
+      if (timeDifference < CACHE_TTL) {
+        return cachedData.data;
+      }
+    }
 
     try {
       const response = await fetch(url, {
@@ -35,7 +49,15 @@ export default class HTTP {
       });
       if (!response.ok) throw response;
 
-      await cache.put(cachedKey, response.clone());
+      await cache.put(
+        cachedKey,
+        new Response(
+          JSON.stringify({
+            timestamp: Date.now(),
+            data: await response.json(),
+          })
+        )
+      );
       const data = await response.json();
 
       return data;
