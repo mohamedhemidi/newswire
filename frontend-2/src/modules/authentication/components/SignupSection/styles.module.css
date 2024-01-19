@@ -9,7 +9,7 @@
 }
 .signupForm {
   background-color: var(--card-bg-color);
-  padding: 1rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

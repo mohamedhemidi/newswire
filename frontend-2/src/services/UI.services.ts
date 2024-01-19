@@ -15,3 +15,17 @@ export const toggleSidebar = () => {
     });
   };
 };
+export const openModal = () => {
+  return (dispatch: Dispatch) => {
+    dispatch({
+      type: actions.OPEN_MODAL
+    });
+  };
+};
+export const closeModal = () => {
+  return (dispatch: Dispatch) => {
+    dispatch({
+      type: actions.CLOSE_MODAL
+    });
+  };
+};
