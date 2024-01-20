@@ -86,7 +86,7 @@ const AdvancedSearch = () => {
 
     dispatch(closeModal());
   };
-  if (!categories || !sources) {
+  if ((!categoriesList || !sourcesList) && modal_opened) {
     return <Loader />;
   }
   return (

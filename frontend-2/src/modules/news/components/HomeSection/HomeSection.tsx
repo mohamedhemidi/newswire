@@ -2,6 +2,7 @@ import { Loader } from "common/components/Loader";
 import { useAppSelector } from "hooks/useAppSelector";
 import { NewsCard } from "../NewsCard";
 import { NewsT } from "types/News";
+import { SearchSection } from "modules/search/components/container/SearchSection";
 
 const HomeSection = () => {
   const { data, loading } = useAppSelector((state) => state.news) as {
@@ -15,6 +16,7 @@ const HomeSection = () => {
   }
   return (
     <>
+      <SearchSection />
       {data ? (
         data.data.map((i) => {
           return (

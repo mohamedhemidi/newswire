@@ -36,6 +36,7 @@
 @media screen and (max-width: 768px) {
   .container {
     position: relative;
+    justify-content: space-between;
   }
   .content {
     justify-content: center;

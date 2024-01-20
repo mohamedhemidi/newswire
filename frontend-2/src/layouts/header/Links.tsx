@@ -1,5 +1,4 @@
 import {
-  FilterIcon,
   HomeIcon,
   LoginIcon,
   LogoutIcon,
@@ -47,15 +46,5 @@ export const NavLinks = [
     auth: true,
     path: null,
     action: "logout",
-  },
-];
-
-export const constantLinks = [
-  {
-    title: "Advanced Search",
-    icon: <FilterIcon />,
-    auth: false,
-    path: null,
-    action: "advancedSearch",
   },
 ];
