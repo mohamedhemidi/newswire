@@ -12,7 +12,7 @@ const SearchSection = () => {
     dispatch(openModal());
   };
   return (
-    <>
+    <div className={styles.wrapper}>
       <AdvancedSearch />
       <div className={styles.container}>
         <Button
@@ -20,12 +20,13 @@ const SearchSection = () => {
           variant="filled"
           color="primary"
           onClick={openAdvancedSearch}
+          width={11}
         >
-          Advanced Search
+          More Search
         </Button>
         <SearchBox />
       </div>
-    </>
+    </div>
   );
 };
 

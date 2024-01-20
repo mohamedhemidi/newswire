@@ -49,17 +49,19 @@ export default class HTTP {
       });
       if (!response.ok) throw response;
 
-      await cache.put(
-        cachedKey,
-        new Response(
-          JSON.stringify({
-            timestamp: Date.now(),
-            data: await response.json(),
-          })
-        )
-      );
       const data = await response.json();
 
+      if (enableCache) {
+        await cache.put(
+          cachedKey,
+          new Response(
+            JSON.stringify({
+              timestamp: Date.now(),
+              data,
+            })
+          )
+        );
+      }
       return data;
     } catch (err) {
       if (err instanceof Response)

@@ -1,13 +1,13 @@
+import styles from "./styles.module.css";
+import GetCategories from "modules/news/services/categories.services";
+import GetSources from "modules/news/services/sources.services";
 import { MultiSelect, TextField } from "lib/vault-ui";
 import { Modal } from "common/components/Modal";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useAppSelector } from "hooks/useAppSelector";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { closeModal } from "services/UI.services";
-import styles from "./styles.module.css";
 import { Loader } from "common/components/Loader";
-import GetCategories from "modules/news/services/categories.services";
-import GetSources from "modules/news/services/sources.services";
 import { transformDataToSelect } from "modules/settings/utils/DataHelper";
 import { search } from "modules/search/services/search.services";
 
@@ -18,6 +18,8 @@ type SelectOptionT = {
 const AdvancedSearch = () => {
   const dispatch = useAppDispatch();
   const { modal_opened } = useAppSelector((state) => state.UI);
+
+  const shouldRun = useRef(true);
 
   const [categoriesList, setCategories] = useState<SelectOptionT[]>();
   const [sourcesList, setSources] = useState<SelectOptionT[]>();
@@ -34,7 +36,8 @@ const AdvancedSearch = () => {
   };
 
   useEffect(() => {
-    if (modal_opened) {
+    if (shouldRun.current && modal_opened) {
+      shouldRun.current = false;
       dispatch(GetCategories());
       dispatch(GetSources());
     }
@@ -83,10 +86,10 @@ const AdvancedSearch = () => {
         sources: data.sources,
       })
     );
-
     dispatch(closeModal());
   };
-  if ((!categoriesList || !sourcesList) && modal_opened) {
+
+  if ((!categoriesList?.length || !sourcesList?.length) && modal_opened) {
     return <Loader />;
   }
   return (
@@ -101,7 +104,7 @@ const AdvancedSearch = () => {
         onChange={(e) => handleKeyword(e.target.value)}
       />
       <label className={styles.settingsFormLabel}>
-        Choose sources (multiple) :
+        Choose Categories (multiple) :
       </label>
       {categoriesList && categoriesList.length && (
         <MultiSelect
@@ -112,7 +115,7 @@ const AdvancedSearch = () => {
         />
       )}
       <label className={styles.settingsFormLabel}>
-        Choose sources (multiple) :
+        Choose News Sources (multiple) :
       </label>
       {sourcesList && sourcesList.length && (
         <MultiSelect
