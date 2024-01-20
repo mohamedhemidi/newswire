@@ -1,5 +1,5 @@
 export type SearchT = {
-  keyword: string;
-  sources: string[];
-  categories: string[];
+  keyword?: string;
+  sources?: string[];
+  categories?: string[];
 };

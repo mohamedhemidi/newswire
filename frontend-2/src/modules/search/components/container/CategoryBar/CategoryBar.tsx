@@ -1,16 +1,25 @@
+import { useAppDispatch } from "hooks/useAppDispatch";
 import styles from "./styles.module.css";
 
 import { useAppSelector } from "hooks/useAppSelector";
+import { search } from "modules/search/services/search.services";
 
 type Category = {
   [key: string]: string;
 };
 
 const CategoryBar = () => {
+  const dispatch = useAppDispatch();
+
   const { data } = useAppSelector((state) => state.categories) as {
     data: {
       categories: Category[];
     };
+  };
+
+  const handleCategorySelect = (category: string) => {
+    const selecetdCategory = [category];
+    dispatch(search({ categories: selecetdCategory }));
   };
 
   return (
@@ -23,7 +32,7 @@ const CategoryBar = () => {
               return (
                 <p
                   key={index}
-                  onClick={() => console.log("Clicked on ", categoryValue)}
+                  onClick={() => handleCategorySelect(categoryValue)}
                 >
                   {categoryKey}
                 </p>
