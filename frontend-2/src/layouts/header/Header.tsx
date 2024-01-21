@@ -4,15 +4,10 @@ import styles from "./styles.module.css";
 import { CloseIcon, MenuIcon } from "assets/icons";
 import { ThemeToggle } from "common/components/ThemeToggle";
 import { useNavigate } from "react-router-dom";
-import { NavLinks, constantLinks } from "./Links";
+import { NavLinks } from "./Links";
 import { checkAuth, logout } from "modules/authentication/utils/authHelper";
-import { SearchBox } from "modules/search/components/container/SearchBox";
-import { AdvancedSearch } from "modules/search/components/container/AdvancedSearch";
-import { useAppDispatch } from "hooks/useAppDispatch";
-import { openModal } from "services/UI.services";
 
 const Header = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const authenticated = checkAuth();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,9 +26,6 @@ const Header = () => {
           navigate(0);
         });
         break;
-      case "advancedSearch":
-        dispatch(openModal());
-        break;
       case "notification":
         break;
 
@@ -47,7 +39,6 @@ const Header = () => {
   `;
   return (
     <>
-      <AdvancedSearch />
       <header className={styles.container}>
         <div
           className={styles.logo}
@@ -86,29 +77,8 @@ const Header = () => {
               </div>
             );
           })}
-          {constantLinks.map((li) => {
-            return (
-              <div key={li.title} className={styles.navlink}>
-                <Button
-                  icon={li.icon}
-                  variant="ghost"
-                  color="neutral"
-                  onClick={() => {
-                    if (li.path) {
-                      return navigate(li.path);
-                    } else {
-                      return handleOnClick(li.action as string);
-                    }
-                  }}
-                >
-                  {li.title}
-                </Button>
-              </div>
-            );
-          })}
           <ThemeToggle />
         </nav>
-        <SearchBox />
         <div className={styles.toggleMenu}>
           <Button
             id={styles.menuOpen}

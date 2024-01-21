@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.sidebarSection {
+  width: 25%;
+}
+.contentSection {
+  width: 75%;
+}
+@media screen and (max-width: 768px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .contentSection, .sidebarSection {
+    width: 100%;
+  }
+}
