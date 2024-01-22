@@ -23,6 +23,7 @@ const GetNews = (query: unknown, page: number = 1) => {
           payload: response.data,
         });
       }
+      return response;
     } catch (error) {
       dispatch({
         type: actions.GET_NEWS_ERROR,
