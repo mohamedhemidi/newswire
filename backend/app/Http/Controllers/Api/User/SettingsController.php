@@ -68,4 +68,14 @@ class SettingsController extends Controller
             'sources' => $sources
         ]);
     }
+
+    public function getSettings()
+    {
+        $user = Auth::user();
+
+        return response()->json([
+            'categories' => unserialize($user->settings->categories),
+            'sources' => unserialize($user->settings->sources)
+        ]);
+    }
 }

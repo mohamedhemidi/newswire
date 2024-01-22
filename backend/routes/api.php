@@ -39,5 +39,6 @@ Route::get('/getSources', [SettingsController::class, 'getSources']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/auth/logout', [LogoutUserController::class, 'logout']);
+    Route::get('/user/settings', [SettingsController::class, 'getSettings']);
     Route::post('/user/settings/update', [SettingsController::class, 'updateSettings']);
 });
