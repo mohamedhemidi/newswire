@@ -9,12 +9,26 @@
 .contentSection {
   width: 75%;
 }
+.noNews {
+  background-color: var(--card-bg-color);
+  border-radius: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 @media screen and (max-width: 768px) {
   .wrapper {
     display: flex;
     flex-direction: column-reverse;
   }
-  .contentSection, .sidebarSection {
+  .contentSection,
+  .sidebarSection {
     width: 100%;
   }
 }
