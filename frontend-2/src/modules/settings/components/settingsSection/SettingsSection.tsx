@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useGetFilters from "modules/settings/hooks/useGetFilters";
 import { MultiSelect, Button } from "lib/vault-ui";
-import UpdateSettings from "modules/settings/services/settings.services";
+import UpdateSettings from "modules/settings/services/updateSettings.services";
 
 const SettingsSection = () => {
   const dispatch = useAppDispatch();

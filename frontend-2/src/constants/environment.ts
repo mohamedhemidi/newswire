@@ -22,5 +22,6 @@ export const PATH = {
   // Settings:
   fetchCategories: `${API_ENDPOINT}/api/getCategories`,
   fetchSources: `${API_ENDPOINT}/api/getSources`,
+  getSettings: `${API_ENDPOINT}/api/user/settings`,
   updateSettings: `${API_ENDPOINT}/api/user/settings/update`,
 };

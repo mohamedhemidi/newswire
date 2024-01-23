@@ -5,6 +5,7 @@ import { useAppSelector } from "hooks/useAppSelector";
 import UserProfile from "modules/authentication/services/profile.services";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { checkAuth } from "modules/authentication/utils/authHelper";
+import getSettings from "modules/settings/services/getSettings.services";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -18,7 +19,10 @@ function App() {
   useEffect(() => {
     if (shouldRun.current) {
       shouldRun.current = false;
-      if (auth.loggedIn && auth.token) dispatch(UserProfile(auth.token));
+      if (auth.loggedIn && auth.token) {
+        dispatch(UserProfile(auth.token));
+        dispatch(getSettings());
+      }
     }
   }, [auth, dispatch]);
   return (

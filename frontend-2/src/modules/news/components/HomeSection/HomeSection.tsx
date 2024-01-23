@@ -1,4 +1,3 @@
-import { Loader } from "common/components/Loader";
 import { useAppSelector } from "hooks/useAppSelector";
 import { NewsT } from "types/News";
 import { SearchSection } from "modules/search/components/container/SearchSection";
@@ -8,44 +7,47 @@ import { Button } from "lib/vault-ui";
 import { useEffect, useRef, useState } from "react";
 import { NewsList } from "../NewsList";
 import { useAppDispatch } from "hooks/useAppDispatch";
-import GetCategories from "modules/news/services/categories.services";
 import GetNews from "modules/news/services/news.services";
+import { ErrorIcon } from "assets/icons";
+import { SearchT } from "modules/search/types/search";
 
 const HomeSection = () => {
   const dispatch = useAppDispatch();
   const [news, setNews] = useState<NewsT[]>([]);
   const [scrollLoading, setScrollLoading] = useState(false);
-  const shouldRun = useRef(true);
+
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { query } = useAppSelector((state) => state.search);
+  const shouldSearch = useRef(true);
+  const prevQuery = useRef<SearchT | null>(null);
+
+  const { query } = useAppSelector((state) => state.search) as {
+    query: SearchT;
+  };
 
   useEffect(() => {
-    setPageNumber(1);
     setNews([]);
   }, [query]);
 
   useEffect(() => {
-    if (shouldRun.current) {
-      shouldRun.current = false;
-      dispatch(GetCategories());
+    if (shouldSearch.current) {
+      shouldSearch.current = false;
       setScrollLoading(true);
-      dispatch(GetNews(query, pageNumber)).then((res) => {
-        shouldRun.current = true;
+      const isQueryChange = query !== prevQuery.current;
+      dispatch(GetNews(query, isQueryChange ? 1 : pageNumber)).then((res) => {
+        shouldSearch.current = true;
         setScrollLoading(false);
         setNews((prev) => [...prev, ...res.data.data]);
       });
+      prevQuery.current = query;
     }
-  }, [ dispatch, pageNumber]);
+  }, [query, dispatch, pageNumber]);
 
   const handleLoadMore = () => {
     setPageNumber((prevPage) => prevPage + 1);
-    shouldRun.current = true;
+    shouldSearch.current = true;
   };
 
-  if (!news.length) {
-    return <Loader />;
-  }
   return (
     <div className={styles.wrapper}>
       <aside className={styles.sidebarSection}>
@@ -56,7 +58,15 @@ const HomeSection = () => {
           <SearchSection />
         </div>
         <div className={styles.newsListSection}>
-          <NewsList news={news} />
+          {news.length ? (
+            <NewsList news={news} />
+          ) : (
+            <div className={styles.noNews}>
+              <h2>No news for the choosen filters!</h2>
+              <ErrorIcon />
+            </div>
+          )}
+          {/* <NewsList news={news} /> */}
         </div>
         <Button
           color="primary"
