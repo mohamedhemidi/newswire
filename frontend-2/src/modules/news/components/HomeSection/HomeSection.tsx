@@ -63,10 +63,10 @@ const HomeSection = () => {
           ) : (
             <div className={styles.noNews}>
               <h2>No news for the choosen filters!</h2>
+              <p>You might want to update your news feed settings</p>
               <ErrorIcon />
             </div>
           )}
-          {/* <NewsList news={news} /> */}
         </div>
         <Button
           color="primary"
