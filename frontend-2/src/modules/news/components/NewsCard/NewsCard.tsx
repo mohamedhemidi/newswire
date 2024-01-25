@@ -1,10 +1,10 @@
 import ShareIcon from "assets/icons/share";
 import styles from "./styles.module.css";
 import moment from "moment";
-import { NewsT } from "types/News";
 import ImagePlaceholder from "assets/images/no_image_placeholder.png";
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from "lib/vault-ui";
+import { NewsT } from "modules/news/types/News";
 
 const NewsCard = ({
   id,
