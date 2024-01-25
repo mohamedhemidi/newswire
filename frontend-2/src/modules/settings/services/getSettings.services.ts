@@ -16,7 +16,7 @@ const getSettings = () => {
       });
       const response = await http.GET(PATH.getSettings, null, {
         Authorization: `Bearer ${token}`,
-      });
+      },false);
       if (response) {
         dispatch({
           type: actions.GET_SETTINGS_SUCCESS,

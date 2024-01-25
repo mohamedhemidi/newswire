@@ -32,6 +32,13 @@ class NewsController extends Controller
 
                 $query->search($request->keyword);
 
+                if ($request->categories) {
+                    $query->whereIn('category',  $request->categories);
+                }
+                if ($request->sources) {
+                    $query->whereIn('source', $request->sources);
+                }
+
 
                 if ($preferredCategories && !isset($request->categories) && !isset($request->keyword)) {
                     $query->whereIn('category',  $preferredCategories);

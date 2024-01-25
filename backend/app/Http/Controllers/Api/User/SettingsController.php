@@ -73,9 +73,17 @@ class SettingsController extends Controller
     {
         $user = Auth::user();
 
+        if($user->settings === null) {
+            return response()->json([
+            'categories' => [],
+            'sources' => []
+         ]);
+        }
+
         return response()->json([
             'categories' => unserialize($user->settings->categories),
             'sources' => unserialize($user->settings->sources)
         ]);
     }
 }
+

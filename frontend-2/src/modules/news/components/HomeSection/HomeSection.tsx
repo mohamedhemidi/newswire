@@ -1,5 +1,5 @@
 import { useAppSelector } from "hooks/useAppSelector";
-import { NewsT } from "types/News";
+
 import { SearchSection } from "modules/search/components/container/SearchSection";
 import styles from "./styles.module.css";
 import { CategoryBar } from "modules/search/components/container/CategoryBar";
@@ -10,6 +10,7 @@ import { useAppDispatch } from "hooks/useAppDispatch";
 import GetNews from "modules/news/services/news.services";
 import { ErrorIcon } from "assets/icons";
 import { SearchT } from "modules/search/types/search";
+import { NewsT } from "modules/news/types/News";
 
 const HomeSection = () => {
   const dispatch = useAppDispatch();
@@ -37,7 +38,9 @@ const HomeSection = () => {
       dispatch(GetNews(query, isQueryChange ? 1 : pageNumber)).then((res) => {
         shouldSearch.current = true;
         setScrollLoading(false);
-        setNews((prev) => [...prev, ...res.data.data]);
+        if (res) {
+          setNews((prev) => [...prev, ...res.data.data]);
+        }
       });
       prevQuery.current = query;
     }
@@ -63,10 +66,10 @@ const HomeSection = () => {
           ) : (
             <div className={styles.noNews}>
               <h2>No news for the choosen filters!</h2>
+              <p>You might want to update your news feed settings</p>
               <ErrorIcon />
             </div>
           )}
-          {/* <NewsList news={news} /> */}
         </div>
         <Button
           color="primary"

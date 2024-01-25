@@ -1,6 +1,6 @@
+import { NewsT } from "modules/news/types/News";
 import { NewsCard } from "../NewsCard";
 import { Loader } from "common/components/Loader";
-import { NewsT } from "types/News";
 
 type Props = {
   news: NewsT[];
