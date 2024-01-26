@@ -14,6 +14,7 @@ const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
 const Settings = lazy(() => import("./pages/Settings"));
+const Article = lazy(() => import("./pages/Article"));
 const Page404 = lazy(() => import("./pages/404"));
 
 const RoutesList = () => {
@@ -24,6 +25,7 @@ const RoutesList = () => {
           <Route path="" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/article/:id" element={<Article />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/settings" element={<Settings />} />
           </Route>
