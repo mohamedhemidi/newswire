@@ -1,14 +1,14 @@
 import { Button } from "lib/vault-ui";
 import styles from "./styles.module.css";
 import CloseIcon from "assets/icons/close";
-
+import { useEffect, useRef } from "react";
 type Props = {
   children: React.ReactNode;
   open: boolean;
   confirmText?: string;
   cancelText?: string;
   onSubmit?: (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
-  onClose: (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
+  onClose: () => void;
 };
 
 const Modal = ({
@@ -19,9 +19,24 @@ const Modal = ({
   confirmText = "Confirm",
   cancelText = "Cancel",
 }: Props) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    };
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, [onClose]);
+
   if (!open) return null;
   return (
-    <div onClick={onClose}>
+    <div onClick={onClose} ref={modalRef}>
       <div
         onClick={(e) => {
           e.stopPropagation();
