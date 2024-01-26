@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 import SignupUser from "modules/authentication/services/signup.services";
 import { useAppSelector } from "hooks/useAppSelector";
 import { useNavigate } from "react-router-dom";
+import { Form } from "common/container/Form";
 
 const SignupSection = () => {
   const dispatch = useAppDispatch();
@@ -44,7 +45,7 @@ const SignupSection = () => {
   return (
     <div className={styles.signupContainer}>
       <h2>Signup</h2>
-      <form onSubmit={handleSignup} className={styles.signupForm}>
+      <Form onSubmit={handleSignup}>
         <TextField name="name" onChange={handleChange} label="Name" />
         <TextField name="email" onChange={handleChange} label="Email" />
         <TextField
@@ -62,7 +63,7 @@ const SignupSection = () => {
         <Button color="primary" variant="filled" width={10}>
           Signup
         </Button>
-      </form>
+      </Form>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { useState } from "react";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import LoginUser from "modules/authentication/services/login.services";
+import { Form } from "common/container/Form";
 
 const LoginSection = () => {
   const dispatch = useAppDispatch();
@@ -27,7 +28,7 @@ const LoginSection = () => {
   return (
     <div className={styles.loginContainer}>
       <h2>Login</h2>
-      <form onSubmit={handleLogin} className={styles.loginForm}>
+      <Form onSubmit={handleLogin}>
         <TextField
           value={loginData.email}
           onChange={handleChange}
@@ -45,7 +46,7 @@ const LoginSection = () => {
         <Button color="primary" variant="filled" width={10}>
           Login
         </Button>
-      </form>
+      </Form>
     </div>
   );
 };
