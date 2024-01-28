@@ -13,7 +13,9 @@ const SignupUser = (credentials: TCredentials) => {
         type: actions.SIGNUP_USER,
         payload: credentials,
       });
-      const response = await http.POST(PATH.userSignup, credentials);
+      const response = await http.POST(PATH.userSignup, {
+        headers: credentials,
+      });
       if (response) {
         dispatch({
           type: actions.SIGNUP_USER_SUCCESS,

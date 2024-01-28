@@ -5,7 +5,6 @@ import actions from "redux/actions";
 import { Dispatch } from "redux";
 
 const LoginUser = (credentials: Pick<TCredentials, "email" | "password">) => {
-  
   const http = new HTTP();
 
   return async (dispatch: Dispatch) => {
@@ -14,7 +13,10 @@ const LoginUser = (credentials: Pick<TCredentials, "email" | "password">) => {
         type: actions.LOGIN_USER,
         payload: credentials,
       });
-      const response = await http.POST(PATH.userLogin, credentials);
+      await http.GET(PATH.getAuthCookie, { withCredentials: true });
+      const response = await http.POST(PATH.userLogin, {
+        headers: credentials,
+      });
       if (response) {
         dispatch({
           type: actions.LOGIN_USER_SUCCESS,

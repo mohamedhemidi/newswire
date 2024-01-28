@@ -15,8 +15,11 @@ const UpdateSettings = (data: unknown, cb: () => void) => {
         type: actions.UPDATE_SETTINGS,
         payload: data,
       });
-      const response = await http.POST(PATH.updateSettings, data, {
-        Authorization: `Bearer ${token}`,
+      const response = await http.POST(PATH.updateSettings, {
+        body: data,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (response) {
         dispatch({

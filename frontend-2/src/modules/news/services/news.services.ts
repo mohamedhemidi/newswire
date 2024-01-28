@@ -14,8 +14,11 @@ const GetNews = (query: unknown, page: number = 1) => {
       dispatch({
         type: actions.GET_NEWS,
       });
-      const response = await http.POST(url, query, {
-        Authorization: `Bearer ${token}`,
+      const response = await http.POST(url, {
+        body: query,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (response) {
         dispatch({

@@ -18,6 +18,7 @@ export const PATH = {
   userLogin: `${API_ENDPOINT}/api/auth/login`,
   userSignup: `${API_ENDPOINT}/api/auth/register`,
   userProfile: `${API_ENDPOINT}/api/user`,
+  getAuthCookie: `${API_ENDPOINT}/sanctum/csrf-cookie`,
 
   // Settings:
   fetchCategories: `${API_ENDPOINT}/api/getCategories`,
