@@ -2,7 +2,7 @@ import { PATH } from "constants/environment";
 import HTTP from "utils/httpClient";
 import actions from "redux/actions";
 import { Dispatch } from "redux";
-import { AUTH_TOKEN } from "constants/auth";
+import { AUTH_TOKEN } from "modules/authentication/constants/auth";
 
 const UpdateSettings = (data: unknown, cb: () => void) => {
   const http = new HTTP();
@@ -15,8 +15,11 @@ const UpdateSettings = (data: unknown, cb: () => void) => {
         type: actions.UPDATE_SETTINGS,
         payload: data,
       });
-      const response = await http.POST(PATH.updateSettings, data, {
-        Authorization: `Bearer ${token}`,
+      const response = await http.POST(PATH.updateSettings, {
+        body: data,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (response) {
         dispatch({

@@ -1,4 +1,4 @@
-import { AUTH_TOKEN } from "constants/auth";
+import { AUTH_TOKEN } from "modules/authentication/constants/auth";
 
 export const checkAuth = () => {
   if (localStorage.getItem(AUTH_TOKEN)) {

@@ -2,6 +2,16 @@ const DEFAULT_HEADERS = {
   "Content-Type": "application/json",
 };
 
+type ParamsT = {
+  body?: unknown;
+  signal?: AbortSignal | null;
+  headers?: Record<string, string>;
+  enableCache?: boolean;
+  cacheName?: "cache";
+  withCredentials?: boolean;
+  cacheTime?: number; // 15 minutes
+};
+
 export default class HTTP {
   /*
   //  HEADERS:
@@ -17,12 +27,15 @@ export default class HTTP {
   //  GET Requests:
   */
   async GET(
-    url: string,
-    signal?: AbortSignal | null,
-    headers?: Record<string, string>,
-    enableCache = true,
-    cacheName = "cache",
-    cacheTime = 900 // 15 minutes
+    url: RequestInfo | URL,
+    {
+      signal = null,
+      headers,
+      enableCache = true,
+      cacheName = "cache",
+      withCredentials = false,
+      cacheTime = 900,
+    }: ParamsT = {}
   ) {
     // Caching mechanism:
     const CACHE_NAME = cacheName;
@@ -46,6 +59,7 @@ export default class HTTP {
         signal,
         headers: this.HEADERS(headers),
         cache: "no-store",
+        credentials: withCredentials ? "include" : "omit",
       });
       if (!response.ok) throw response;
 
@@ -75,16 +89,15 @@ export default class HTTP {
   //  POST Requests:
   */
   async POST(
-    url: string,
-    body: unknown,
-    headers?: Record<string, string>,
-    signal?: AbortSignal
+    url: RequestInfo | URL,
+    { body, headers, signal = null, withCredentials = false }: ParamsT
   ) {
     try {
       const response = await fetch(url, {
         method: "POST",
         body: JSON.stringify(body),
         headers: this.HEADERS(headers),
+        credentials: withCredentials ? "include" : "omit",
         signal,
       });
       if (!response.ok) throw response;

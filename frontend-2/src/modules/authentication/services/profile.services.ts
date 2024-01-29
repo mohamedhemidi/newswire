@@ -12,8 +12,10 @@ const UserProfile = (token: string) => {
         type: actions.USER_PROFILE,
         payload: token,
       });
-      const response = await http.GET(PATH.userProfile, null, {
-        Authorization: `Bearer ${token}`,
+      const response = await http.GET(PATH.userProfile, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (response) {
         dispatch({

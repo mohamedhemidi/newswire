@@ -1,4 +1,4 @@
-import { AUTH_TOKEN } from "constants/auth";
+import { AUTH_TOKEN } from "modules/authentication/constants/auth";
 import actions from "redux/actions";
 
 type StateT = {
