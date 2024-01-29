@@ -2,7 +2,7 @@ import { PATH } from "constants/environment";
 import HTTP from "utils/httpClient";
 import actions from "redux/actions";
 import { Dispatch } from "redux";
-import { AUTH_TOKEN } from "constants/auth";
+import { AUTH_TOKEN } from "modules/authentication/constants/auth";
 
 const UpdateSettings = (data: unknown, cb: () => void) => {
   const http = new HTTP();

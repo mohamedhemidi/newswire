@@ -2,11 +2,16 @@ import { PATH } from "constants/environment";
 import HTTP from "utils/httpClient";
 import actions from "redux/actions";
 import { Dispatch } from "redux";
-import { AUTH_TOKEN } from "constants/auth";
+import {
+  AUTH_TOKEN,
+  COOKIE,
+} from "modules/authentication/constants/auth";
+import getCookie from "modules/authentication/utils/getCookie";
 
 const GetNews = (query: unknown, page: number = 1) => {
   const http = new HTTP();
   const token = localStorage.getItem(AUTH_TOKEN);
+  const cookie = getCookie(COOKIE) as string;
   const url = `${PATH.fetchNews}?page=${page}`;
 
   return async (dispatch: Dispatch) => {
@@ -18,6 +23,7 @@ const GetNews = (query: unknown, page: number = 1) => {
         body: query,
         headers: {
           Authorization: `Bearer ${token}`,
+          "X-XSRF-TOKEN": cookie,
         },
       });
       if (response) {

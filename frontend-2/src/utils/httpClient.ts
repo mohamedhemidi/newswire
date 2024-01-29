@@ -31,7 +31,7 @@ export default class HTTP {
     {
       signal = null,
       headers,
-      enableCache = false,
+      enableCache = true,
       cacheName = "cache",
       withCredentials = false,
       cacheTime = 900,
@@ -90,13 +90,14 @@ export default class HTTP {
   */
   async POST(
     url: RequestInfo | URL,
-    { body, headers, signal = null }: ParamsT
+    { body, headers, signal = null, withCredentials = false }: ParamsT
   ) {
     try {
       const response = await fetch(url, {
         method: "POST",
         body: JSON.stringify(body),
         headers: this.HEADERS(headers),
+        credentials: withCredentials ? "include" : "omit",
         signal,
       });
       if (!response.ok) throw response;
