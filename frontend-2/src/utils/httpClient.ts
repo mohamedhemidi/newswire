@@ -12,7 +12,7 @@ type ParamsT = {
   cacheTime?: number; // 15 minutes
 };
 
-export default class HTTP {
+class HTTP {
   /*
   //  HEADERS:
   */
@@ -31,7 +31,7 @@ export default class HTTP {
     {
       signal = null,
       headers,
-      enableCache = true,
+      enableCache = false,
       cacheName = "cache",
       withCredentials = false,
       cacheTime = 900,
@@ -112,3 +112,5 @@ export default class HTTP {
     }
   }
 }
+
+export default HTTP;

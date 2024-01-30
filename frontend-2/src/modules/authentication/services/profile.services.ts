@@ -16,6 +16,7 @@ const UserProfile = (token: string) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        enableCache: true,
       });
       if (response) {
         dispatch({
