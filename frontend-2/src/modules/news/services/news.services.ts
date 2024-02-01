@@ -21,6 +21,7 @@ const GetNews = (query: unknown, page: number = 1) => {
       });
       const response = await http.POST(url, {
         body: query,
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
           "X-XSRF-TOKEN": cookie,
