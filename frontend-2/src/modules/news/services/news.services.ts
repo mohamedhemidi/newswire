@@ -11,7 +11,7 @@ import getCookie from "modules/authentication/utils/getCookie";
 const GetNews = (query: unknown, page: number = 1) => {
   const http = new HTTP();
   const token = localStorage.getItem(AUTH_TOKEN);
-  const cookie = getCookie(COOKIE) as string;
+  const cookie = getCookie.get(COOKIE) as string;
   const url = `${PATH.fetchNews}?page=${page}`;
 
   return async (dispatch: Dispatch) => {
@@ -21,6 +21,7 @@ const GetNews = (query: unknown, page: number = 1) => {
       });
       const response = await http.POST(url, {
         body: query,
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
           "X-XSRF-TOKEN": cookie,

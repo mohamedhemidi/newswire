@@ -11,7 +11,7 @@ const GetSources = () => {
       dispatch({
         type: actions.GET_SOURCES,
       });
-      const response = await http.GET(PATH.fetchSources);
+      const response = await http.GET(PATH.fetchSources, { enableCache: true });
       if (response) {
         dispatch({
           type: actions.GET_SOURCES_SUCCESS,

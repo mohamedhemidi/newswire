@@ -11,7 +11,7 @@ const GetCategories = () => {
       dispatch({
         type: actions.GET_CATEGORIES,
       });
-      const response = await http.GET(PATH.fetchCategories);
+      const response = await http.GET(PATH.fetchCategories, {enableCache: true});
       if (response) {
         dispatch({
           type: actions.GET_CATEGORIES_SUCCESS,
