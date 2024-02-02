@@ -5,8 +5,6 @@ import { useAppSelector } from "hooks/useAppSelector";
 import UserProfile from "modules/authentication/services/profile.services";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { checkAuth } from "modules/authentication/utils/authHelper";
-import { PATH } from "constants/environment";
-import http from "lib/httpClient";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -18,12 +16,8 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    const createSession = async () => {
-      await http.GET(PATH.createSession, { withCredentials: true });
-    };
     if (shouldRun.current) {
       shouldRun.current = false;
-      createSession();
       if (auth.loggedIn && auth.token) {
         dispatch(UserProfile(auth.token));
       }

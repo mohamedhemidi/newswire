@@ -3,11 +3,9 @@ import actions from "redux/actions";
 import { Dispatch } from "redux";
 import { AUTH_TOKEN } from "modules/authentication/constants/auth";
 import http from "lib/httpClient";
-import { getCookie } from "modules/authentication/utils/authHelper";
 
 const GetNews = (query: unknown, page: number = 1) => {
   const token = localStorage.getItem(AUTH_TOKEN);
-  const cookie = getCookie();
   const url = `${PATH.fetchNews}?page=${page}`;
 
   return async (dispatch: Dispatch) => {
@@ -17,10 +15,8 @@ const GetNews = (query: unknown, page: number = 1) => {
       });
       const response = await http.POST(url, {
         body: query,
-        withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
-          "X-XSRF-TOKEN": cookie,
         },
       });
       if (response) {
