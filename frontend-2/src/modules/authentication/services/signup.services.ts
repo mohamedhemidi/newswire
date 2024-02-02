@@ -1,15 +1,12 @@
 import { PATH } from "constants/environment";
 import { TCredentials } from "../types/authCredentials";
-import HTTP from "utils/httpClient";
 import actions from "redux/actions";
 import { Dispatch } from "redux";
-import getCookie from "../utils/getCookie";
-import { COOKIE } from "../constants/auth";
+import { getCookie } from "../utils/authHelper";
+import http from "lib/httpClient";
 
 const SignupUser = (credentials: TCredentials) => {
-  const http = new HTTP();
-
-  const cookie = getCookie.get(COOKIE) as string;
+  const cookie = getCookie();
 
   return async (dispatch: Dispatch) => {
     try {

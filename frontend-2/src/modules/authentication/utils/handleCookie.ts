@@ -1,7 +1,7 @@
 import Cookie from "universal-cookie";
 const cookie = new Cookie();
 
-class getCookie {
+class handleCookie {
   get(key: string) {
     return cookie.get(key);
   }
@@ -14,7 +14,7 @@ class getCookie {
   }
 }
 
-export default new getCookie();
+export default new handleCookie();
 
 // const getCookie = (name: string) => {
 //   const cookies = document.cookie.split(";");

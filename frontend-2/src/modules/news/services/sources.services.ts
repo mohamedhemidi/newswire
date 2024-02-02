@@ -1,11 +1,9 @@
 import { PATH } from "constants/environment";
-import HTTP from "utils/httpClient";
 import actions from "redux/actions";
 import { Dispatch } from "redux";
+import http from "lib/httpClient";
 
 const GetSources = () => {
-  const http = new HTTP();
-
   return async (dispatch: Dispatch) => {
     try {
       dispatch({

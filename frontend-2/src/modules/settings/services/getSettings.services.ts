@@ -1,12 +1,10 @@
 import { PATH } from "constants/environment";
-import HTTP from "utils/httpClient";
 import actions from "redux/actions";
 import { Dispatch } from "redux";
 import { AUTH_TOKEN } from "modules/authentication/constants/auth";
+import http from "lib/httpClient";
 
 const getSettings = () => {
-  const http = new HTTP();
-
   const token = localStorage.getItem(AUTH_TOKEN);
 
   return async (dispatch: Dispatch) => {

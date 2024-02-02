@@ -15,8 +15,8 @@ export const PATH = {
   fetchArticle: `${API_ENDPOINT}/api/news`,
 
   // Users
-  userLogin: `${API_ENDPOINT}/auth/login`,
-  userSignup: `${API_ENDPOINT}/auth/register`,
+  userLogin: `${API_ENDPOINT}/api/auth/login`,
+  userSignup: `${API_ENDPOINT}/api/auth/register`,
   userProfile: `${API_ENDPOINT}/api/user`,
   createSession: `${API_ENDPOINT}/sanctum/csrf-cookie`,
 
