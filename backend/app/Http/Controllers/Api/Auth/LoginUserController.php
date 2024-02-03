@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Auth\LoginUserRequest;
 use App\Traits\HttpResponses;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginUserController extends Controller
@@ -17,10 +17,15 @@ class LoginUserController extends Controller
      * 
      */
 
-    public function login(LoginUserRequest $request)
+    public function login(Request $request)
     {
+        
        try {
-        $request->validated($request->only(['email', 'password']));
+
+        if(!isset($request->email) || !isset($request->password)) 
+        {
+            return $this->error('', 'Email and password are required', 422);
+        }
 
         if(!Auth::attempt($request->only(['email', 'password']))) {
             return $this->error('', 'Credentials do not match', 401);
