@@ -11,8 +11,15 @@ import { Form } from "common/container/Form";
 const SignupSection = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { success } = useAppSelector((state) => state.signup) as {
+
+  const { success, error } = useAppSelector((state) => state.signup) as {
     success: boolean;
+    error: {
+      data: {
+        status: string;
+        message: string;
+      };
+    };
   };
 
   const [userData, setUserData] = useState({
@@ -32,7 +39,6 @@ const SignupSection = () => {
 
   const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Signing up with ", userData);
     dispatch(SignupUser(userData));
   };
 
@@ -46,19 +52,26 @@ const SignupSection = () => {
     <div className={styles.signupContainer}>
       <h2>Signup</h2>
       <Form onSubmit={handleSignup}>
-        <TextField name="name" onChange={handleChange} label="Name" />
-        <TextField name="email" onChange={handleChange} label="Email" />
+      {error && error.data ? (
+        <div className={styles.errorContainer}>
+          <h2 className={styles.errorMessage}>{error.data.message}</h2>
+        </div>
+      ) : null}
+        <TextField name="name" onChange={handleChange} label="Name" error={error ? true : false}/>
+        <TextField name="email" onChange={handleChange} label="Email" error={error ? true : false}/>
         <TextField
           name="password"
           type="password"
           onChange={handleChange}
           label="Password"
+          error={error ? true : false}
         />
         <TextField
           name="password_confirmation"
           onChange={handleChange}
           label="Confirm Password"
           type="password"
+          error={error ? true : false}
         />
         <Button color="primary" variant="filled" width={10}>
           Signup

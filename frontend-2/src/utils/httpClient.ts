@@ -1,5 +1,6 @@
 const DEFAULT_HEADERS = {
   "Content-Type": "application/json",
+  "accept": "application/json"
 };
 
 type ParamsT = {

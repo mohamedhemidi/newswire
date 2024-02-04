@@ -6,8 +6,6 @@ import { getCookie } from "../utils/authHelper";
 import http from "lib/httpClient";
 
 const SignupUser = (credentials: TCredentials) => {
-  const cookie = getCookie();
-
   return async (dispatch: Dispatch) => {
     try {
       dispatch({
@@ -15,6 +13,7 @@ const SignupUser = (credentials: TCredentials) => {
         payload: credentials,
       });
       await http.GET(PATH.createSession, { withCredentials: true });
+      const cookie = getCookie();
       const response = await http.POST(PATH.userSignup, {
         body: credentials,
         withCredentials: true,
