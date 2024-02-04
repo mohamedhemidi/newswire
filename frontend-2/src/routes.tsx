@@ -6,6 +6,7 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 
 /*
  */
+// Switch between Layouts : 
 const Layout = lazy(() => import("./layouts/layouts/layout_1"));
 // const Layout = lazy(() => import("./layouts/layouts/layout_2"));
 /*

@@ -1,7 +1,8 @@
+import { THEME } from "constants/UI";
 import actions from "redux/actions";
 
 const initialState = {
-  theme: "light",
+  theme: localStorage.getItem(THEME) || "light",
   sidebar_collapsed: false,
   modal_opened: false,
 };
@@ -9,6 +10,7 @@ const initialState = {
 const UIReducer = (state = initialState, action: UIActionProps) => {
   switch (action.type) {
     case actions.TOGGLE_THEME:
+      localStorage.setItem(THEME, state.theme === "light" ? "dark" : "light");
       return {
         ...state,
         theme: (state.theme = state.theme === "light" ? "dark" : "light"),
