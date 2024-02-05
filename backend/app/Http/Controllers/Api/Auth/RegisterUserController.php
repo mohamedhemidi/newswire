@@ -27,7 +27,6 @@ class RegisterUserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
-    
             return $this->success([
                 'user' => $user,
                 'token' => $user->createToken('API Token')->plainTextToken

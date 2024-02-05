@@ -5,14 +5,17 @@ import { useAppSelector } from "hooks/useAppSelector";
 import UserProfile from "modules/authentication/services/profile.services";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { checkAuth } from "modules/authentication/utils/authHelper";
+import { THEME } from "constants/UI";
 
 function App() {
   const dispatch = useAppDispatch();
   const { theme } = useAppSelector((state) => state.UI);
   const auth = checkAuth();
   const shouldRun = useRef(true);
+
   useEffect(() => {
-    document.querySelector("body")?.setAttribute("data-theme", theme);
+    const currentTheme = localStorage.getItem(THEME) as string;
+    document.querySelector("body")?.setAttribute("data-theme", currentTheme);
   }, [theme]);
 
   useEffect(() => {
