@@ -26,12 +26,15 @@ const LoginUser = (credentials: Pick<TCredentials, "email" | "password">) => {
           type: actions.LOGIN_USER_SUCCESS,
           payload: response,
         });
+
+        return response;
       }
     } catch (error) {
       dispatch({
         type: actions.LOGIN_USER_ERROR,
         payload: error,
       });
+      throw error;
     }
   };
 };

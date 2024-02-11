@@ -4,19 +4,17 @@ import { useState } from "react";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import LoginUser from "modules/authentication/services/login.services";
 import { Form } from "common/container/Form";
-import { useAppSelector } from "hooks/useAppSelector";
 
 const LoginSection = () => {
   const dispatch = useAppDispatch();
 
-  const { error } = useAppSelector((state) => state.login) as {
-    error: {
-      data: {
-        status: string;
-        message: string;
-      };
+  const [error, setError] = useState<{
+    data: {
+      status: string;
+      message: string;
     };
-  };
+  } | null>(null);
+
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -32,16 +30,20 @@ const LoginSection = () => {
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(LoginUser(loginData));
+    dispatch(LoginUser(loginData)).catch((err) => {
+      setError(err);
+    });
   };
 
   return (
     <div className={styles.loginContainer}>
       <h2>Login</h2>
-      <Form onSubmit={handleLogin}>
-        {error && error.data ? (
+      <Form data-testid="login_form" onSubmit={handleLogin}>
+        {error ? (
           <div className={styles.errorContainer}>
-            <h2 className={styles.errorMessage}>{error.data.message}</h2>
+            <h2 data-testid="error_message" className={styles.errorMessage}>
+              Error : {error.data.message}
+            </h2>
           </div>
         ) : null}
         <TextField
@@ -51,6 +53,7 @@ const LoginSection = () => {
           label="Email"
           type="email"
           error={error ? true : false}
+          data-testid="email_field"
         />
         <TextField
           value={loginData.password}
@@ -58,6 +61,7 @@ const LoginSection = () => {
           name="password"
           label="Password"
           type="password"
+          data-testid="password_field"
           error={error ? true : false}
         />
         <Button color="primary" variant="filled" width={10}>
