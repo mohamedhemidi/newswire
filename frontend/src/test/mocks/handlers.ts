@@ -1,19 +1,18 @@
+import { PATH } from "constants/environment";
 import { http, HttpResponse } from "msw";
 
 export const handlers = [
-  http.get("https://dummyjson.com/todos", () => {
+  http.get(PATH.createSession, () => {
+    return HttpResponse.json(
+      { status: 204 }
+    );
+  }),
+  http.post(PATH.userLogin, () => {
     return HttpResponse.json(
       {
-        todos: [
-          {
-            id: 1,
-            todo: "Do something nice for someone I care about",
-            completed: true,
-            userId: 26,
-          },
-        ],
+        message: "The email field is required. (and 1 more error)",
       },
-      { status: 200 }
+      { status: 422 }
     );
   }),
 ];

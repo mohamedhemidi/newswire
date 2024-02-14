@@ -40,9 +40,9 @@ const LoginSection = () => {
       <h2>Login</h2>
       <Form data-testid="login_form" onSubmit={handleLogin}>
         {error ? (
-          <div className={styles.errorContainer}>
-            <h2 data-testid="error_message" className={styles.errorMessage}>
-              Error : {error.data.message}
+          <div data-testid="error" className={styles.errorContainer}>
+            <h2 className={styles.errorMessage}>
+              Error 
             </h2>
           </div>
         ) : null}
