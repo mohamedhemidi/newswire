@@ -14,6 +14,7 @@ const LoginSection = () => {
       message: string;
     };
   } | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -30,19 +31,32 @@ const LoginSection = () => {
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(LoginUser(loginData)).catch((err) => {
-      setError(err);
-    });
+    dispatch(LoginUser(loginData))
+      .then((res) => {
+        console.log(res);
+        setSuccess(res.message);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   };
+
+  console.log(error);
 
   return (
     <div className={styles.loginContainer}>
       <h2>Login</h2>
       <Form data-testid="login_form" onSubmit={handleLogin}>
+        {success ? (
+          <div data-testid="error">
+            <h2>{success}</h2>
+          </div>
+        ) : null}
         {error ? (
           <div data-testid="error" className={styles.errorContainer}>
             <h2 className={styles.errorMessage}>
-              Error 
+              {/* Error : {error.data.message} */}
+              Error : {error.data.message}
             </h2>
           </div>
         ) : null}
