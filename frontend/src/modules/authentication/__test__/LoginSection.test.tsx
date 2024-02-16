@@ -3,11 +3,15 @@ import { LoginSection } from "../components/LoginSection";
 import { fireEvent, render, screen } from "utils/test-utils";
 
 describe("Login Section", () => {
+
+
   it.skip("renders login form heading", () => {
     render(<LoginSection />);
     const loginHeading = screen.getByRole("heading", { name: "Login" });
     expect(loginHeading).toBeInTheDocument();
   });
+
+
   it("login successfully with correct credentials", async () => {
     render(<LoginSection />);
     // Empty credentials
@@ -30,6 +34,8 @@ describe("Login Section", () => {
     screen.debug();
     expect(successDiv).toBeInTheDocument();
   });
+
+
   it.skip("renders error when login with empty credentials", async () => {
     render(<LoginSection />);
     // Empty credentials

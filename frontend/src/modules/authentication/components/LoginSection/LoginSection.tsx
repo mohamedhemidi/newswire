@@ -8,12 +8,7 @@ import { Form } from "common/container/Form";
 const LoginSection = () => {
   const dispatch = useAppDispatch();
 
-  const [error, setError] = useState<{
-    data: {
-      status: string;
-      message: string;
-    };
-  } | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
   const [loginData, setLoginData] = useState({
@@ -33,31 +28,26 @@ const LoginSection = () => {
     e.preventDefault();
     dispatch(LoginUser(loginData))
       .then((res) => {
-        console.log(res);
-        setSuccess(res.message);
+        setSuccess(res.status);
       })
       .catch((err) => {
-        setError(err);
+        setError(err.data.message);
       });
   };
 
-  console.log(error);
 
   return (
     <div className={styles.loginContainer}>
       <h2>Login</h2>
       <Form data-testid="login_form" onSubmit={handleLogin}>
         {success ? (
-          <div data-testid="error">
+          <div data-testid="success">
             <h2>{success}</h2>
           </div>
         ) : null}
         {error ? (
           <div data-testid="error" className={styles.errorContainer}>
-            <h2 className={styles.errorMessage}>
-              {/* Error : {error.data.message} */}
-              Error : {error.data.message}
-            </h2>
+            <h2 className={styles.errorMessage}>Error : {error}</h2>
           </div>
         ) : null}
         <TextField
