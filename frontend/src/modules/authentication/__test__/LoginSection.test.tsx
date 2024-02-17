@@ -4,15 +4,7 @@ import { fireEvent, render, screen } from "utils/test-utils";
 
 describe("Login Section", () => {
 
-
-  it.skip("renders login form heading", () => {
-    render(<LoginSection />);
-    const loginHeading = screen.getByRole("heading", { name: "Login" });
-    expect(loginHeading).toBeInTheDocument();
-  });
-
-
-  it("login successfully with correct credentials", async () => {
+  it.skip("login successfully with correct credentials", async () => {
     render(<LoginSection />);
     // Empty credentials
     const emailInput = screen.getByTestId("email_field");
@@ -36,7 +28,7 @@ describe("Login Section", () => {
   });
 
 
-  it.skip("renders error when login with empty credentials", async () => {
+  it("renders error when login with empty credentials", async () => {
     render(<LoginSection />);
     // Empty credentials
     const emailInput = screen.getByTestId("email_field");

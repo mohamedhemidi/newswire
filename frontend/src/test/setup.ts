@@ -2,7 +2,6 @@ import "@testing-library/jest-dom";
 
 import { server } from "./mocks/server";
 
-
 // Cache Storage Mocking :
 
 const mockCacheStorage = {
@@ -13,7 +12,8 @@ const mockCacheStorage = {
   ),
 };
 
-global.caches = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(global as any).caches = {
   open: mockCacheStorage.open,
 };
 
