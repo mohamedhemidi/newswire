@@ -1,0 +1,11 @@
+{
+  "status": "Request was successful.",
+  "data": {
+    "user": {
+      "id": 3,
+      "name": "Mark",
+      "email": "mark@myer.com",
+      "email_verified_at": null
+    }
+  }
+}

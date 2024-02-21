@@ -56,6 +56,7 @@ const LoginSection = () => {
           name="email"
           label="Email"
           type="email"
+          id="email"
           error={error ? true : false}
           data-testid="email_field"
         />
@@ -64,11 +65,12 @@ const LoginSection = () => {
           onChange={handleChange}
           name="password"
           label="Password"
+          id="password"
           type="password"
           data-testid="password_field"
           error={error ? true : false}
         />
-        <Button color="primary" variant="filled" width={10}>
+        <Button id="loginBtn" color="primary" variant="filled" width={10}>
           Login
         </Button>
       </Form>

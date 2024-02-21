@@ -8,4 +8,6 @@
   gap: 1.5rem;
   border-radius: 2rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  width: 20rem;
+  text-align: center;
 }

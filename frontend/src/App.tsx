@@ -15,6 +15,7 @@ function App() {
 
   useEffect(() => {
     const currentTheme = localStorage.getItem(THEME) as string;
+    if (!currentTheme) localStorage.setItem(THEME, "light");
     document.querySelector("body")?.setAttribute("data-theme", currentTheme);
   }, [theme]);
 

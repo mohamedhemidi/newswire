@@ -53,12 +53,12 @@ const SignupSection = () => {
       <h2>Signup</h2>
       <Form onSubmit={handleSignup}>
       {error && error.data ? (
-        <div className={styles.errorContainer}>
+        <div data-testid="error" className={styles.errorContainer}>
           <h2 className={styles.errorMessage}>{error.data.message}</h2>
         </div>
       ) : null}
         <TextField name="name" onChange={handleChange} label="Name" error={error ? true : false}/>
-        <TextField name="email" onChange={handleChange} label="Email" error={error ? true : false}/>
+        <TextField name="email" onChange={handleChange} id="email" label="Email" error={error ? true : false}/>
         <TextField
           name="password"
           type="password"
@@ -70,6 +70,7 @@ const SignupSection = () => {
           name="password_confirmation"
           onChange={handleChange}
           label="Confirm Password"
+          id="password_confirmation"
           type="password"
           error={error ? true : false}
         />

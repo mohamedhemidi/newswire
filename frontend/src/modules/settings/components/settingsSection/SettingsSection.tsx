@@ -11,6 +11,7 @@ import getSettings from "modules/settings/services/getSettings.services";
 import { transformSettingsToSelect } from "modules/settings/utils/DataHelper";
 import { SettingsT } from "modules/search/types/settings";
 import { SelectOption } from "types/Select";
+import { Loader } from "common/components/Loader";
 
 type SelectedSettingsT = {
   categories: SelectOption[];
@@ -83,24 +84,29 @@ const SettingsSection = () => {
         <label className={styles.settingsFormLabel}>
           Choose favorite categories (multiple):
         </label>
-        {settings.categories.length && (
+        {settings.categories.length ? (
           <MultiSelect
+            id="select-categories"
             multiple
             options={settings.categories}
             value={selectedSettings.categories}
             onChange={(e) => handleSelect(e, "categories")}
           />
+        ) : (
+          <Loader />
         )}
         <label className={styles.settingsFormLabel}>
           Choose favorite sources (multiple) :
         </label>
-        {settings.sources.length && (
+        {settings.sources.length ? (
           <MultiSelect
             multiple
             options={settings.sources}
             value={selectedSettings.sources}
             onChange={(e) => handleSelect(e, "sources")}
           />
+        ) : (
+          <Loader />
         )}
         <Button variant="filled" color="primary">
           Submit
