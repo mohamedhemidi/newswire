@@ -1,44 +1,76 @@
-version: '4.25.2'
+version: "4.25.2"
 services:
-    backend:
-      build:
-        context: ./backend  
-        dockerfile: Dockerfile 
-      environment:
-        DB_HOST: db
-        DB_PORT: 3306
-        DB_DATABASE: newswire
-        DB_USERNAME: root
-        DB_PASSWORD: root
-      ports:
-        - 8000:8000   
-      volumes:
-        - ./backend:/app/backend   
-      depends_on:
-        - db   
-      networks:
-        - app
-    # frontend:
-    #   build:
-    #     context: ./frontend  
-    #     dockerfile: Dockerfile
-    #   tty: true  
-    #   ports:
-    #     - 5173:5173   
-    #   volumes:
-    #     - ./frontend:/app/frontend
-    #   depends_on:
-    #     - backend     
-    #   networks:
-    #     - app
-    db:
-      image: mysql:8.2.0
-      environment: 
-        MYSQL_DATABASE: 'newswire'
-        MYSQL_PASSWORD: 'root'
-        MYSQL_ROOT_PASSWORD: 'root'
-      networks:
-        - app
-networks:
-    app:
-      driver: 'bridge'
+#######################################
+# BACKEND
+#######################################
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    environment:
+      DB_HOST: mysql_db
+      DB_PORT: 3306
+      DB_DATABASE: newswire
+      DB_USERNAME: root
+      DB_PASSWORD: password
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/var/www/html
+    depends_on:
+      - mysql_db
+    networks:
+      - default
+#######################################
+# FRONTEND
+#######################################
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   tty: true
+  #   ports:
+  #     - 5173:5173
+  #   volumes:
+  #     - ./frontend:/app/frontend
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - default
+
+#######################################
+# MySQL server
+#######################################  
+  mysql_db:
+    image: mysql:8.2
+    container_name: mysql_database
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: newswire
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 3307:3306
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - default
+
+#######################################
+# PHP MY ADMIN
+#######################################
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+    - mysql_db
+    environment:
+      PMA_HOST: mysql_db
+    ports:
+      - 9001:80
+    networks:
+      - default
+volumes:
+  dbdata:
