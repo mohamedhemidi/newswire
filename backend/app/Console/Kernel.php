@@ -16,11 +16,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('sanctum:prune-expired --hours=24')->daily();
         
         // NewsApi.org API
-        $schedule->command('news-api:cron')->everyFifteenMinutes();
+        $schedule->command('news-api:cron')->everyTwoMinutes();
         // New York Times News API
-        $schedule->command('nyt-news:cron')->everyFifteenMinutes();
+        $schedule->command('nyt-news:cron')->everyTwoMinutes();
         // The Guardian News API
-        $schedule->command('tg-news:cron')->everyFifteenMinutes();
+        $schedule->command('tg-news:cron')->everyTwoMinutes();
     }
 
     /**
