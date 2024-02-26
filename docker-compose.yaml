@@ -16,24 +16,25 @@ services:
     depends_on:
       - mysql_db
     networks:
-      - default
+      - app
   #######################################
   # FRONTEND
   #######################################
 
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   container_name: frontend
-  #   ports:
-  #     - 5173:5173
-  #   volumes:
-  #     - ./frontend:/frontend
-  #   depends_on:
-  #     - backend
-  #   networks:
-  #     - default
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    tty: true
+    ports:
+      - 5173:5173
+    volumes:
+      - ./frontend:/frontend
+    depends_on:
+      - backend
+    networks:
+      - app
   #######################################
   # MySQL server
   #######################################
@@ -51,7 +52,7 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     networks:
-      - default
+      - app
   #######################################
   # PhpMyAdmin
   #######################################
@@ -66,6 +67,9 @@ services:
     ports:
       - 9001:80
     networks:
-      - default
+      - app
 volumes:
   dbdata:
+networks:
+  app:
+    driver: bridge
