@@ -7,5 +7,5 @@ build_docker:
 up_docker: 
 	docker-compose up -d
 migrate_docker:
-	docker exec backend bash -c "php artisan migrate" 
-	docker exec backend bash -c "php artisan schedule:work" 
+	docker exec backend sh -c "php artisan migrate" 
+	docker exec backend sh -c "php artisan schedule:work" 

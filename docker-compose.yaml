@@ -1,25 +1,23 @@
-version: "4.25.2"
 services:
-  #######################################
   # BACKEND
-  #######################################
-
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: backend
     ports:
-      - 8000:8000
+      - 9000:9000
     volumes:
       - ./backend:/var/www/html
     depends_on:
       - mysql_db
     networks:
-      - app
-  #######################################
+      app:
+        aliases:
+          - backend
+        
+
   # FRONTEND
-  #######################################
 
   frontend:
     build:
@@ -33,12 +31,31 @@ services:
       - ./frontend:/frontend
     depends_on:
       - backend
+    links:
+      - backend
     networks:
       - app
-  #######################################
-  # MySQL server
-  #######################################
 
+  # Nginx
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - backend
+    links:
+      - backend
+    ports:
+      - "8000:80"
+    volumes:
+      - ./backend:/var/www/html
+      - ./backend/nginx/:/etc/nginx/conf.d/
+    networks:
+      - app
+  
+  # MySQL server
   mysql_db:
     image: mysql:8.2
     container_name: mysql_db
@@ -53,10 +70,8 @@ services:
       - dbdata:/var/lib/mysql
     networks:
       - app
-  #######################################
-  # PhpMyAdmin
-  #######################################
 
+  # PhpMyAdmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
