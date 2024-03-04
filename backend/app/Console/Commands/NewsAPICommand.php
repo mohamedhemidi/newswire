@@ -41,7 +41,7 @@ class NewsAPICommand extends Command
         */
 
 
-        $url = "https://newsapi.org/v2/everything?sources=abc-news,al-jazeera-english,der-tagesspiegel,the-washington-post,time,business-insider-uk&language=en&from=2023-11-29&to=2023-11-29&sortBy=popularity&pageSize=100&apiKey=" . env('NEWSAPI_API_KEY');
+        $url = "https://newsapi.org/v2/everything?sources=abc-news,al-jazeera-english,der-tagesspiegel,the-washington-post,time,business-insider-uk&language=en&sortBy=popularity&pageSize=100&apiKey=" . env('NEWSAPI_API_KEY');
 
         $news = Http::timeout(30)->retry(3, 100)->get($url);
 
